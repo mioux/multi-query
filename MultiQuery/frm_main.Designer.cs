@@ -36,6 +36,7 @@ namespace MultiQuery
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
 			this.mnu_main = new System.Windows.Forms.MenuStrip();
 			this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +77,7 @@ namespace MultiQuery
 			// 
 			// quitterToolStripMenuItem
 			// 
+			this.quitterToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quitterToolStripMenuItem.Image")));
 			this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
 			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
 			this.quitterToolStripMenuItem.Text = "&Quitter";
@@ -95,6 +97,7 @@ namespace MultiQuery
 			// 
 			// ajouterToolStripMenuItem
 			// 
+			this.ajouterToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ajouterToolStripMenuItem.Image")));
 			this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
 			this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.ajouterToolStripMenuItem.Text = "&Ajouter";
@@ -102,6 +105,7 @@ namespace MultiQuery
 			// 
 			// supprimerToolStripMenuItem
 			// 
+			this.supprimerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("supprimerToolStripMenuItem.Image")));
 			this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
 			this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.supprimerToolStripMenuItem.Text = "&Supprimer";
@@ -114,6 +118,7 @@ namespace MultiQuery
 			// 
 			// exécuterSurLesServeursSélectionnésToolStripMenuItem
 			// 
+			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exécuterSurLesServeursSélectionnésToolStripMenuItem.Image")));
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Name = "exécuterSurLesServeursSélectionnésToolStripMenuItem";
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Text = "&Exécuter sur les serveurs sélectionnés";
@@ -121,6 +126,7 @@ namespace MultiQuery
 			// 
 			// exécuterSurTousLesServeursToolStripMenuItem
 			// 
+			this.exécuterSurTousLesServeursToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exécuterSurTousLesServeursToolStripMenuItem.Image")));
 			this.exécuterSurTousLesServeursToolStripMenuItem.Name = "exécuterSurTousLesServeursToolStripMenuItem";
 			this.exécuterSurTousLesServeursToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.exécuterSurTousLesServeursToolStripMenuItem.Text = "E&xécuter sur tous les serveurs";
