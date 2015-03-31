@@ -51,6 +51,10 @@
     <Compile Include="Config\frm_newServer.Designer.cs">
       <DependentUpon>frm_newServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomForm\CheckListBox.cs" />
+    <Compile Include="CustomForm\CheckListBox.Designer.cs">
+      <DependentUpon>CheckListBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_main.cs" />
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
@@ -62,12 +66,16 @@
     <EmbeddedResource Include="Config\frm_newServer.resx">
       <DependentUpon>frm_newServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\CheckListBox.resx">
+      <DependentUpon>CheckListBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config" />
+    <Folder Include="CustomForm" />
     <Folder Include="Server" />
   </ItemGroup>
 </Project>

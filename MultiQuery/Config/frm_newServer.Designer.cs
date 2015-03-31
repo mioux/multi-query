@@ -214,7 +214,7 @@ namespace MultiQuery.Config
 			// 
 			// pan_color
 			// 
-			this.pan_color.BackColor = System.Drawing.Color.White;
+			this.pan_color.BackColor = System.Drawing.SystemColors.WindowText;
 			this.pan_color.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pan_color.Location = new System.Drawing.Point(125, 45);
 			this.pan_color.Name = "pan_color";

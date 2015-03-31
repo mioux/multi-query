@@ -47,7 +47,7 @@ namespace MultiQuery
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exécuterSurTousLesServeursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.spc_main = new System.Windows.Forms.SplitContainer();
-			this.clb_serverList = new System.Windows.Forms.CheckedListBox();
+			this.clb_serverList = new MultiQuery.CustomForm.CheckListBox();
 			this.tbc_result = new System.Windows.Forms.TabControl();
 			this.bgw_executeQuery = new System.ComponentModel.BackgroundWorker();
 			this.mnu_main.SuspendLayout();
@@ -152,10 +152,9 @@ namespace MultiQuery
 			// clb_serverList
 			// 
 			this.clb_serverList.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.clb_serverList.FormattingEnabled = true;
 			this.clb_serverList.Location = new System.Drawing.Point(0, 0);
 			this.clb_serverList.Name = "clb_serverList";
-			this.clb_serverList.Size = new System.Drawing.Size(210, 424);
+			this.clb_serverList.Size = new System.Drawing.Size(210, 431);
 			this.clb_serverList.TabIndex = 0;
 			// 
 			// tbc_result
@@ -185,10 +184,10 @@ namespace MultiQuery
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private MultiQuery.CustomForm.CheckListBox clb_serverList;
 		private System.ComponentModel.BackgroundWorker bgw_executeQuery;
 		private System.Windows.Forms.MenuStrip mnu_main;
 		private System.Windows.Forms.TabControl tbc_result;
-		private System.Windows.Forms.CheckedListBox clb_serverList;
 		private System.Windows.Forms.SplitContainer spc_main;
 		private System.Windows.Forms.ToolStripMenuItem exécuterSurTousLesServeursToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exécuterSurLesServeursSélectionnésToolStripMenuItem;

@@ -19,8 +19,6 @@ namespace MultiQuery
 	/// </summary>
 	public partial class frm_main : Form
 	{
-		Dictionary<string, Server.Server> srvList = new Dictionary<string, Server.Server>();
-		
 		private frm_newServer newServer = new frm_newServer();
 		
 		/// <summary>
@@ -36,8 +34,6 @@ namespace MultiQuery
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			
-			clb_serverList.DataSource = srvList;
 		}
 		
 		/// <summary>
@@ -49,7 +45,7 @@ namespace MultiQuery
 		{
 			if (newServer.ShowDialog() == DialogResult.OK)
 			{
-				srvList.Add(newServer.NewServer.ServerName, newServer.NewServer);
+				clb_serverList.AddServer(newServer.NewServer);
 			}
 		}
 		
@@ -63,15 +59,33 @@ namespace MultiQuery
 			
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
 		void ExécuterSurLesServeursSélectionnésToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
 		void ExécuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			
 		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		
 		void QuitterToolStripMenuItemClick(object sender, EventArgs e)
 		{

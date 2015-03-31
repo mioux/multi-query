@@ -75,5 +75,10 @@ namespace MultiQuery.Server
 			
 			return true;
 		}
+		
+		public override string ToString()
+		{
+			return this.ServerName;
+		}
 	}
 }
