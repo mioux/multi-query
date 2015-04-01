@@ -68,6 +68,7 @@ namespace MultiQuery.Config
 			this.txt_server.Name = "txt_server";
 			this.txt_server.Size = new System.Drawing.Size(222, 20);
 			this.txt_server.TabIndex = 2;
+			this.txt_server.Leave += new System.EventHandler(this.Txt_serverLeave);
 			// 
 			// label1
 			// 
@@ -83,6 +84,8 @@ namespace MultiQuery.Config
 			this.cbx_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_type.Enabled = false;
 			this.cbx_type.FormattingEnabled = true;
+			this.cbx_type.Items.AddRange(new object[] {
+									"MsSqlServer"});
 			this.cbx_type.Location = new System.Drawing.Point(125, 19);
 			this.cbx_type.Name = "cbx_type";
 			this.cbx_type.Size = new System.Drawing.Size(222, 21);
@@ -99,9 +102,11 @@ namespace MultiQuery.Config
 			this.cbx_authent.Name = "cbx_authent";
 			this.cbx_authent.Size = new System.Drawing.Size(222, 21);
 			this.cbx_authent.TabIndex = 3;
+			this.cbx_authent.SelectedIndexChanged += new System.EventHandler(this.Cbx_authentSelectedIndexChanged);
 			// 
 			// txt_username
 			// 
+			this.txt_username.Enabled = false;
 			this.txt_username.Location = new System.Drawing.Point(125, 99);
 			this.txt_username.Name = "txt_username";
 			this.txt_username.Size = new System.Drawing.Size(205, 20);
@@ -109,6 +114,7 @@ namespace MultiQuery.Config
 			// 
 			// txt_pw
 			// 
+			this.txt_pw.Enabled = false;
 			this.txt_pw.Location = new System.Drawing.Point(125, 125);
 			this.txt_pw.Name = "txt_pw";
 			this.txt_pw.Size = new System.Drawing.Size(205, 20);
@@ -116,6 +122,7 @@ namespace MultiQuery.Config
 			// 
 			// chx_rememberMe
 			// 
+			this.chx_rememberMe.Enabled = false;
 			this.chx_rememberMe.Location = new System.Drawing.Point(125, 151);
 			this.chx_rememberMe.Name = "chx_rememberMe";
 			this.chx_rememberMe.Size = new System.Drawing.Size(143, 20);
@@ -277,6 +284,7 @@ namespace MultiQuery.Config
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "frm_newServer";
 			this.Text = "Ajouter une serveur";
+			this.Load += new System.EventHandler(this.Frm_newServerLoad);
 			this.grp_login.ResumeLayout(false);
 			this.grp_login.PerformLayout();
 			this.grp_register.ResumeLayout(false);

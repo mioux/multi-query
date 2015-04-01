@@ -61,7 +61,17 @@ namespace MultiQuery.Server
 		
 		public static string CreateConnectionString(string dns, string userName, bool rememberMe, string password, bool useTrusted)
 		{
-			string data = string.Empty;
+			string data = "Server=" + dns + ";";
+			
+			
+			if (useTrusted == true)
+				data += "Trusted_Connection=True;";
+			else
+			{
+				data += "User Id=" + userName + ";";
+				if (rememberMe == true)
+					data += "Password=" + password + ";";
+			}
 			
 			return data;
 		}

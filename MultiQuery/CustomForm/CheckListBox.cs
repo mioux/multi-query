@@ -30,6 +30,11 @@ namespace MultiQuery.CustomForm
 		/// </summary>
 		private List<Server.Server> Selected { get; set; }
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		
 		public Server.Server[] GetSelected()
 		{
 			return Selected.ToArray();
@@ -56,22 +61,6 @@ namespace MultiQuery.CustomForm
 			this.lbx_main.DrawMode = DrawMode.OwnerDrawFixed;
 			
 			return dr;
-			
-			/*CheckBox[] cks = new CheckBox[SourceTable.Rows.Count];
-            for (int j = 0; j < SourceTable.Rows.Count; j++)
-            {
-                cks[j] = new CheckBox();
-                cks[j].Text = "";
-                cks[j].Checked = (bool)SourceTable.Rows[j]["Checked"];
-                cks[j].Height = this.lbx_main.ItemHeight;
-                cks[j].Width = 15;
-                cks[j].Location = new Point(0, this.lbx_main.ItemHeight * j);
-                //cks[j].CheckedChanged += new EventHandler(ListBoxUpdate_CheckedChanged);
-                this.lbx_main.Controls.Add(cks[j]);
-                this.lbx_main.Items.Add(SourceTable.Rows[j]["ServerName"].ToString());
-            }
-            this.lbx_main.DrawMode = DrawMode.OwnerDrawFixed;
-            //this.lbx_main.DrawItem += new DrawItemEventHandler(Lbx_mainDrawItem);*/
 		}
 		
 		/// <summary>
@@ -109,6 +98,9 @@ namespace MultiQuery.CustomForm
 		
 		void lbx_main_DrawItem(object sender, DrawItemEventArgs e)
         {
+			if (e.Index > lbx_main.Items.Count || e.Index < 0)
+				return;
+			
             e.DrawBackground();
             Rectangle contentRect = e.Bounds;
             contentRect.X = 16;
@@ -142,6 +134,57 @@ namespace MultiQuery.CustomForm
 				else if (Selected.Contains(srv))
 					Selected.Remove(srv);
 			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		
+		public ListBox.SelectedIndexCollection SelectedIndices
+		{
+			get 
+			{ 
+				return lbx_main.SelectedIndices; 
+			} 
+			private set { }
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="index"></param>
+		
+		public void DeleteServer(int index)
+		{
+			if (index < SourceTable.Rows.Count)
+			{
+				for (int i = index + 1; i < SourceTable.Rows.Count; ++i)
+				{
+					CheckBox chxMove = (CheckBox)SourceTable.Rows[i]["Checked"];
+					chxMove.Location = new Point(0, chxMove.Location.Y - lbx_main.ItemHeight);
+				}
+			}
+			
+			CheckBox chxDelete = (CheckBox)SourceTable.Rows[index]["Checked"];
+			chxDelete.Dispose();
+			lbx_main.Items.RemoveAt(index);
+			SourceTable.Rows[index].Delete();
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		
+		public Server.Server[] GetAll()
+		{
+			List<Server.Server> data = new List<Server.Server>();
+			for (int i = 0; i < SourceTable.Rows.Count; ++i)
+			{
+				data.Add((Server.Server)SourceTable.Rows[i]["Server"]);
+			}
+			
+			return data.ToArray();
 		}
 	}
 }

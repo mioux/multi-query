@@ -55,6 +55,10 @@
     <Compile Include="CustomForm\CheckListBox.Designer.cs">
       <DependentUpon>CheckListBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomForm\TabData.cs" />
+    <Compile Include="CustomForm\TabData.Designer.cs">
+      <DependentUpon>TabData.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_main.cs" />
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
@@ -68,6 +72,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\CheckListBox.resx">
       <DependentUpon>CheckListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\TabData.resx">
+      <DependentUpon>TabData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
