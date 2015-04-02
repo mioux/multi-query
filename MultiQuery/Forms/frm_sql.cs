@@ -222,7 +222,7 @@ namespace MultiQuery.Forms
 			string rx_sep = string.Empty;
 			foreach (string key in cl.Keys)
 			{
-				rx_search += rx_sep + key;
+				rx_search += rx_sep + "\\b" + key + "\\b";
 				rx_sep = "|";
 			}
 			rx_search +=")";
@@ -230,7 +230,11 @@ namespace MultiQuery.Forms
 			Regex rex = new Regex(rx_search, RegexOptions.IgnoreCase);  
 		    MatchCollection mc = rex.Matches(rtb_sql.Text);  
 		    int StartCursorPosition = rtb_sql.SelectionStart;  
-		    foreach (Match m in mc)  
+		    rtb_sql.SelectAll();
+		    rtb_sql.SelectionColor = Color.Black;
+		    rtb_sql.SelectionStart = StartCursorPosition;
+		    
+		    foreach (Match m in mc)
 		    {  
 		        int startIndex = m.Index;  
 		        int StopIndex = m.Length;  
