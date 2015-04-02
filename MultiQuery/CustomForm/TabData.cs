@@ -16,7 +16,7 @@ namespace MultiQuery.CustomForm
 	/// <summary>
 	/// Description of TabData.
 	/// </summary>
-	public partial class TabData : /*UserControl //*/TabPage
+	public partial class TabData : TabPage
 	{
 		public TabData()
 		{

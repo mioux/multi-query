@@ -41,7 +41,7 @@ namespace MultiQuery.Server
 			SqlConnection con = new SqlConnection(this.ConString);
 			SqlCommand com = new SqlCommand(sql, con);
 			SqlDataAdapter adapter = new SqlDataAdapter(com);
-			DataSet data = null;
+			DataSet data = new DataSet();
 			con.Open();
 			adapter.Fill(data);
 			con.Close();

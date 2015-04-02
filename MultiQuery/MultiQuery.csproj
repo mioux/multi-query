@@ -59,6 +59,10 @@
     <Compile Include="CustomForm\TabData.Designer.cs">
       <DependentUpon>TabData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_sql.cs" />
+    <Compile Include="Forms\frm_sql.Designer.cs">
+      <DependentUpon>frm_sql.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_main.cs" />
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
@@ -76,6 +80,9 @@
     <EmbeddedResource Include="CustomForm\TabData.resx">
       <DependentUpon>TabData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_sql.resx">
+      <DependentUpon>frm_sql.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +90,7 @@
   <ItemGroup>
     <Folder Include="Config" />
     <Folder Include="CustomForm" />
+    <Folder Include="Forms" />
     <Folder Include="Server" />
   </ItemGroup>
 </Project>

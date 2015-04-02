@@ -21,7 +21,12 @@ namespace MultiQuery
 	/// Description of frm_main.
 	/// </summary>
 	public partial class frm_main : Form
-	{		
+	{
+		/// <summary>
+		/// Requête.
+		/// </summary>
+		Forms.frm_sql frmSql = new MultiQuery.Forms.frm_sql();
+		
 		/// <summary>
 		/// Constructeur.
 		/// </summary>
@@ -86,10 +91,15 @@ namespace MultiQuery
 		
 		void ExécuterSurLesServeursSélectionnésToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			tbc_result.TabPages.Clear();
-			foreach(Server.Server srv in clb_serverList.GetSelected())
+			string sql = string.Empty;
+			
+			if (frmSql.ShowDialog() == DialogResult.OK)
 			{
-				AddNewResult(srv, "Select 1 select 2");
+				tbc_result.TabPages.Clear();
+				foreach(Server.Server srv in clb_serverList.GetSelected())
+				{
+					AddNewResult(srv, frmSql.Data);
+				}
 			}
 		}
 		
@@ -101,10 +111,15 @@ namespace MultiQuery
 		
 		void ExécuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			tbc_result.TabPages.Clear();
-			foreach(Server.Server srv in clb_serverList.GetAll())
+			string sql = string.Empty;
+			
+			if (frmSql.ShowDialog() == DialogResult.OK)
 			{
-				AddNewResult(srv, "Select 1 select 2");
+				tbc_result.TabPages.Clear();
+				foreach(Server.Server srv in clb_serverList.GetAll())
+				{
+					AddNewResult(srv, frmSql.Data);
+				}
 			}
 		}
 		
@@ -139,6 +154,7 @@ namespace MultiQuery
 				{
 					TabControl tbc = new TabControl();
 					tbc.Dock = DockStyle.Fill;
+					newTab.Controls.Add(tbc);
 					
 					for (int i = 0; i < data.Tables.Count; ++i)
 					{
@@ -160,6 +176,7 @@ namespace MultiQuery
 			{
 				TextBox txt = new TextBox();
 				txt.Multiline = true;
+				txt.Dock = DockStyle.Fill;
 				txt.Text = exp.Message + "\n\n" + exp.StackTrace;
 				
 				newTab.Controls.Add(txt);

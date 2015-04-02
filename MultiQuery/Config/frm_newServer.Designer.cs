@@ -119,6 +119,7 @@ namespace MultiQuery.Config
 			this.txt_pw.Name = "txt_pw";
 			this.txt_pw.Size = new System.Drawing.Size(205, 20);
 			this.txt_pw.TabIndex = 5;
+			this.txt_pw.UseSystemPasswordChar = true;
 			// 
 			// chx_rememberMe
 			// 
