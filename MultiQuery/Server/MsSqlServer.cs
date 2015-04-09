@@ -7,15 +7,18 @@
  * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace MultiQuery.Server
 {
 	/// <summary>
 	/// Description of MsSqlServer.
 	/// </summary>
+
+	[Serializable()]
 	public class MsSqlServer : Server
 	{
 		/// <summary>
@@ -76,6 +79,15 @@ namespace MultiQuery.Server
 			return data;
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="dns"></param>
+		/// <param name="userName"></param>
+		/// <param name="password"></param>
+		/// <param name="useTrusted"></param>
+		/// <returns></returns>
+		
 		public static bool TestConnection(string dns, string userName, string password, bool useTrusted)
 		{
 			SqlConnection con = new SqlConnection(MsSqlServer.CreateConnectionString(dns, userName, true, password, useTrusted));
@@ -86,9 +98,36 @@ namespace MultiQuery.Server
 			return true;
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		
 		public override string ToString()
 		{
 			return this.ServerName;
+		}
+		
+		/// <summary>
+		/// Deserialization constructor.
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="ctxt"></param>
+
+		public MsSqlServer(SerializationInfo info, StreamingContext ctxt) : base (info, ctxt)
+		{
+		    
+		}
+		        
+		/// <summary>
+		/// Serialization function.
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="ctxt"></param>
+
+		public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+		{
+			base.GetObjectData(info, ctxt);
 		}
 	}
 }

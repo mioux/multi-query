@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -31,6 +32,19 @@ namespace MultiQuery.Forms
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			
+			if (File.Exists("last.sql"))
+			{
+				try
+				{
+					rtb_sql.Text = File.ReadAllText("last.sql");
+					rtb_sql_TextChanged(rtb_sql, new EventArgs());
+				}
+				catch (Exception exp)
+				{
+					MessageBox.Show("Erreur lors de la lecture de la dernière requête utilisée.\n" + exp.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 		
 		/// <summary>
@@ -254,6 +268,14 @@ namespace MultiQuery.Forms
 		void Btn_okClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;
+			try
+			{
+				File.WriteAllText("last.sql", rtb_sql.Text);
+			}
+			catch (Exception exp)
+			{
+				MessageBox.Show("Erreur lors de la sauvegarde de la dernière requête utilisée.\n" + exp.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 			this.Close();
 		}
 		

@@ -7,15 +7,19 @@
  * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace MultiQuery.Server
 {
 	/// <summary>
 	/// Description of Server.
 	/// </summary>
-	public class Server
+
+	[Serializable()]
+	public class Server : ISerializable
 	{
 		/// <summary>
 		/// Chaîne de connexion.
@@ -55,6 +59,32 @@ namespace MultiQuery.Server
 		public virtual DataSet Execute(string SQL)
 		{
 			throw new Exception("Eh Oh, tu dois utiliser les classes de base !");
+		}
+		
+		/// <summary>
+		/// Deserialization constructor.
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="ctxt"></param>
+
+		public Server(SerializationInfo info, StreamingContext ctxt)
+		{
+		    ConString = (String)info.GetValue("ConString", typeof(string));
+		    ServerName = (String)info.GetValue("ServerName", typeof(string));
+		    ServerColor = (Color)info.GetValue("ServerColor", typeof(Color));
+		}
+		        
+		/// <summary>
+		/// Serialization function.
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="ctxt"></param>
+
+		public virtual void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+		{
+		    info.AddValue("ConString", ConString);
+		    info.AddValue("ServerName", ServerName);
+		    info.AddValue("ServerColor", ServerColor);
 		}
 	}
 }

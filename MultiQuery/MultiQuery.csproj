@@ -59,6 +59,7 @@
     <Compile Include="CustomForm\TabData.Designer.cs">
       <DependentUpon>TabData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cypher.cs" />
     <Compile Include="Forms\frm_sql.cs" />
     <Compile Include="Forms\frm_sql.Designer.cs">
       <DependentUpon>frm_sql.cs</DependentUpon>
