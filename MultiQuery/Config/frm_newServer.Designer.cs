@@ -107,7 +107,7 @@ namespace MultiQuery.Config
 			// txt_username
 			// 
 			this.txt_username.Enabled = false;
-			this.txt_username.Location = new System.Drawing.Point(125, 99);
+			this.txt_username.Location = new System.Drawing.Point(142, 99);
 			this.txt_username.Name = "txt_username";
 			this.txt_username.Size = new System.Drawing.Size(205, 20);
 			this.txt_username.TabIndex = 4;
@@ -115,7 +115,7 @@ namespace MultiQuery.Config
 			// txt_pw
 			// 
 			this.txt_pw.Enabled = false;
-			this.txt_pw.Location = new System.Drawing.Point(125, 125);
+			this.txt_pw.Location = new System.Drawing.Point(142, 125);
 			this.txt_pw.Name = "txt_pw";
 			this.txt_pw.Size = new System.Drawing.Size(205, 20);
 			this.txt_pw.TabIndex = 5;
@@ -124,7 +124,7 @@ namespace MultiQuery.Config
 			// chx_rememberMe
 			// 
 			this.chx_rememberMe.Enabled = false;
-			this.chx_rememberMe.Location = new System.Drawing.Point(125, 151);
+			this.chx_rememberMe.Location = new System.Drawing.Point(142, 151);
 			this.chx_rememberMe.Name = "chx_rememberMe";
 			this.chx_rememberMe.Size = new System.Drawing.Size(143, 20);
 			this.chx_rememberMe.TabIndex = 6;

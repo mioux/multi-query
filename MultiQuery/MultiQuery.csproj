@@ -47,6 +47,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\frm_MsSqlServer_ConnectionDialog.cs" />
+    <Compile Include="Config\frm_MsSqlServer_ConnectionDialog.Designer.cs">
+      <DependentUpon>frm_MsSqlServer_ConnectionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Config\frm_newServer.cs" />
     <Compile Include="Config\frm_newServer.Designer.cs">
       <DependentUpon>frm_newServer.cs</DependentUpon>

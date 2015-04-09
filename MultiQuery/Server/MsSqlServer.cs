@@ -11,6 +11,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Runtime.Serialization;
+using System.Windows.Forms;
+
+using MultiQuery.Config;
 
 namespace MultiQuery.Server
 {
@@ -41,14 +44,50 @@ namespace MultiQuery.Server
 		
 		public override DataSet Execute(string sql)
 		{
+			DataSet data = new DataSet();
+			
+			bool executed = false;
+			bool stop = false;
+
 			SqlConnection con = new SqlConnection(this.ConString);
 			SqlCommand com = new SqlCommand(sql, con);
 			SqlDataAdapter adapter = new SqlDataAdapter(com);
-			DataSet data = new DataSet();
-			con.Open();
-			adapter.Fill(data);
-			con.Close();
 			
+			while (executed == false && stop == false)
+			{
+				try
+				{
+					con.Open();
+					adapter.Fill(data);
+					con.Close();
+					
+					executed = true;
+				}
+				catch (SqlException exp)
+				{
+					if (exp.ErrorCode == 18456) // Login Failed
+					{
+						frm_MsSqlServer_ConnectionDialog conDialog = new frm_MsSqlServer_ConnectionDialog();
+						DialogResult ret = conDialog.ShowDialog();
+						if (ret == DialogResult.OK)
+						{
+							
+						}
+						else if(ret == DialogResult.Cancel)
+						{
+							throw exp;
+						}
+						else
+						{
+							stop = true;
+						}
+					}
+					else
+					{
+						throw exp;
+					}
+				}
+			}
 			return data;
 		}
 		
