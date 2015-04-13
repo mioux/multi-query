@@ -17,6 +17,11 @@ namespace MultiQuery.Config
 	/// </summary>
 	public partial class frm_MsSqlServer_ConnectionDialog : Form
 	{
+		public string UserName { get { return txt_username.Text; } set { txt_username.Text = value; } }
+		public string Password { get { return txt_pw.Text; } set { txt_pw.Text = value; } }
+		public bool RememberMe { get { return chx_rememberMe.Checked; } set { chx_rememberMe.Checked = value; } }
+		public bool UseTrusted { get { return cbx_authent.SelectedIndex == 0; } set { cbx_authent.SelectedIndex = value ? 0 : 1; } }
+		
 		public frm_MsSqlServer_ConnectionDialog()
 		{
 			//
@@ -65,6 +70,7 @@ namespace MultiQuery.Config
 		void Btn_okClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;
+			this.Close();
 		}
 		
 		/// <summary>
@@ -76,6 +82,7 @@ namespace MultiQuery.Config
 		void Btn_annulerClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
+			this.Close();
 		}
 	}
 }

@@ -65,14 +65,15 @@ namespace MultiQuery.Config
 				return;
 			}
 			
-			string conString = MsSqlServer.CreateConnectionString(
+			NewServer = MsSqlServer.New(
 				txt_server.Text,
 				txt_username.Text,
 				chx_rememberMe.Checked,
 				txt_pw.Text,
-				cbx_authent.SelectedIndex == 0);
-			
-			NewServer = new MsSqlServer(conString, txt_serverName.Text, pan_color.BackColor);
+				cbx_authent.SelectedIndex == 0,
+				txt_serverName.Text,
+				pan_color.BackColor,
+				txt_defaultDatabase.Text);
 			
 			this.DialogResult = DialogResult.OK;
 			
@@ -101,7 +102,7 @@ namespace MultiQuery.Config
 		{
 			try
 			{
-				MsSqlServer.TestConnection(txt_server.Text, txt_username.Text, txt_pw.Text, cbx_authent.SelectedIndex == 0);
+				MsSqlServer.TestConnection(txt_server.Text, txt_username.Text, txt_pw.Text, cbx_authent.SelectedIndex == 0, txt_defaultDatabase.Text);
 				MessageBox.Show("Connexion réussie", "Connexion réussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception exp)

@@ -22,9 +22,9 @@ namespace MultiQuery.Server
 	public class Server : ISerializable
 	{
 		/// <summary>
-		/// Chaîne de connexion.
+		/// 
 		/// </summary>
-		protected string ConString { get; set; }
+		public bool DoSaveAfterExecute { get; set; }
 		
 		/// <summary>
 		/// Nom du serveur.
@@ -43,11 +43,11 @@ namespace MultiQuery.Server
 		/// <param name="serverName">Nom du serveur initial.</param>
 		/// <param name="serverColor">Couleur initiale.</param>
 		
-		public Server(string connectionString, string serverName, Color serverColor)
+		public Server(string serverName, Color serverColor)
 		{
-			this.ConString = connectionString;
 			this.ServerName = serverName;
 			this.ServerColor = serverColor;
+			this.DoSaveAfterExecute = false;
 		}
 		
 		/// <summary>
@@ -69,8 +69,7 @@ namespace MultiQuery.Server
 
 		public Server(SerializationInfo info, StreamingContext ctxt)
 		{
-		    ConString = (String)info.GetValue("ConString", typeof(string));
-		    ServerName = (String)info.GetValue("ServerName", typeof(string));
+		    ServerName = info.GetString("ServerName");
 		    ServerColor = (Color)info.GetValue("ServerColor", typeof(Color));
 		}
 		        
@@ -82,7 +81,6 @@ namespace MultiQuery.Server
 
 		public virtual void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
-		    info.AddValue("ConString", ConString);
 		    info.AddValue("ServerName", ServerName);
 		    info.AddValue("ServerColor", ServerColor);
 		}

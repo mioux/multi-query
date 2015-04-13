@@ -58,6 +58,8 @@ namespace MultiQuery.Config
 			this.btn_annuler = new System.Windows.Forms.Button();
 			this.btn_test = new System.Windows.Forms.Button();
 			this.cld = new System.Windows.Forms.ColorDialog();
+			this.txt_defaultDatabase = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.grp_login.SuspendLayout();
 			this.grp_register.SuspendLayout();
 			this.SuspendLayout();
@@ -133,6 +135,8 @@ namespace MultiQuery.Config
 			// 
 			// grp_login
 			// 
+			this.grp_login.Controls.Add(this.label2);
+			this.grp_login.Controls.Add(this.txt_defaultDatabase);
 			this.grp_login.Controls.Add(this.lbl_pw);
 			this.grp_login.Controls.Add(this.lbl_username);
 			this.grp_login.Controls.Add(this.lbl_authent);
@@ -146,7 +150,7 @@ namespace MultiQuery.Config
 			this.grp_login.Controls.Add(this.txt_username);
 			this.grp_login.Location = new System.Drawing.Point(12, 30);
 			this.grp_login.Name = "grp_login";
-			this.grp_login.Size = new System.Drawing.Size(353, 179);
+			this.grp_login.Size = new System.Drawing.Size(353, 208);
 			this.grp_login.TabIndex = 8;
 			this.grp_login.TabStop = false;
 			this.grp_login.Text = "Login";
@@ -197,7 +201,7 @@ namespace MultiQuery.Config
 			this.grp_register.Controls.Add(this.lbl_serverName);
 			this.grp_register.Controls.Add(this.pan_color);
 			this.grp_register.Controls.Add(this.txt_serverName);
-			this.grp_register.Location = new System.Drawing.Point(12, 215);
+			this.grp_register.Location = new System.Drawing.Point(12, 244);
 			this.grp_register.Name = "grp_register";
 			this.grp_register.Size = new System.Drawing.Size(353, 71);
 			this.grp_register.TabIndex = 9;
@@ -227,7 +231,7 @@ namespace MultiQuery.Config
 			this.pan_color.Location = new System.Drawing.Point(125, 45);
 			this.pan_color.Name = "pan_color";
 			this.pan_color.Size = new System.Drawing.Size(16, 16);
-			this.pan_color.TabIndex = 1;
+			this.pan_color.TabIndex = 9;
 			this.pan_color.Click += new System.EventHandler(this.Pan_colorClick);
 			// 
 			// txt_serverName
@@ -235,11 +239,11 @@ namespace MultiQuery.Config
 			this.txt_serverName.Location = new System.Drawing.Point(125, 19);
 			this.txt_serverName.Name = "txt_serverName";
 			this.txt_serverName.Size = new System.Drawing.Size(222, 20);
-			this.txt_serverName.TabIndex = 0;
+			this.txt_serverName.TabIndex = 8;
 			// 
 			// btn_ok
 			// 
-			this.btn_ok.Location = new System.Drawing.Point(290, 292);
+			this.btn_ok.Location = new System.Drawing.Point(290, 321);
 			this.btn_ok.Name = "btn_ok";
 			this.btn_ok.Size = new System.Drawing.Size(75, 23);
 			this.btn_ok.TabIndex = 10;
@@ -250,7 +254,7 @@ namespace MultiQuery.Config
 			// btn_annuler
 			// 
 			this.btn_annuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btn_annuler.Location = new System.Drawing.Point(209, 292);
+			this.btn_annuler.Location = new System.Drawing.Point(209, 321);
 			this.btn_annuler.Name = "btn_annuler";
 			this.btn_annuler.Size = new System.Drawing.Size(75, 23);
 			this.btn_annuler.TabIndex = 11;
@@ -260,7 +264,7 @@ namespace MultiQuery.Config
 			// 
 			// btn_test
 			// 
-			this.btn_test.Location = new System.Drawing.Point(128, 292);
+			this.btn_test.Location = new System.Drawing.Point(128, 321);
 			this.btn_test.Name = "btn_test";
 			this.btn_test.Size = new System.Drawing.Size(75, 23);
 			this.btn_test.TabIndex = 12;
@@ -268,13 +272,28 @@ namespace MultiQuery.Config
 			this.btn_test.UseVisualStyleBackColor = true;
 			this.btn_test.Click += new System.EventHandler(this.Btn_testClick);
 			// 
+			// txt_defaultDatabase
+			// 
+			this.txt_defaultDatabase.Location = new System.Drawing.Point(125, 177);
+			this.txt_defaultDatabase.Name = "txt_defaultDatabase";
+			this.txt_defaultDatabase.Size = new System.Drawing.Size(222, 20);
+			this.txt_defaultDatabase.TabIndex = 7;
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(6, 180);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(100, 17);
+			this.label2.TabIndex = 13;
+			this.label2.Text = "Base par défaut";
+			// 
 			// frm_newServer
 			// 
 			this.AcceptButton = this.btn_ok;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btn_annuler;
-			this.ClientSize = new System.Drawing.Size(377, 322);
+			this.ClientSize = new System.Drawing.Size(377, 353);
 			this.ControlBox = false;
 			this.Controls.Add(this.btn_test);
 			this.Controls.Add(this.btn_annuler);
@@ -292,6 +311,8 @@ namespace MultiQuery.Config
 			this.grp_register.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.TextBox txt_defaultDatabase;
+		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ColorDialog cld;
 		private System.Windows.Forms.Button btn_test;
 		private System.Windows.Forms.Button btn_annuler;

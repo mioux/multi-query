@@ -24,6 +24,20 @@ namespace MultiQuery.Server
 	[Serializable()]
 	public class MsSqlServer : Server
 	{
+		private string _dns = string.Empty;
+		private string _userName = string.Empty;
+		private bool _useTrusted = true;
+		private bool _rememberMe = false;
+		private string _password = string.Empty;
+		private string _defaultDatabase = string.Empty;
+		
+		public static MsSqlServer New(string dns, string userName, bool rememberMe, string password, bool useTrusted, string serverName, Color color, string defaultDatabese)
+		{
+			MsSqlServer newServer = new MsSqlServer(serverName, color, dns, userName, rememberMe, password, useTrusted, defaultDatabese);
+			
+			return newServer;
+		}
+		
 		/// <summary>
 		/// 
 		/// </summary>
@@ -31,9 +45,14 @@ namespace MultiQuery.Server
 		/// <param name="serverName"></param>
 		/// <param name="serverColor"></param>
 		
-		public MsSqlServer(string connectionString, string serverName, Color serverColor) : base (connectionString, serverName, serverColor)
+		private MsSqlServer(string serverName, Color serverColor, string dns, string userName, bool rememberMe, string password, bool useTrusted, string defaultDatabase) : base (serverName, serverColor)
 		{
-			
+			_dns = dns;
+			_userName = userName;
+			_useTrusted = useTrusted;
+			_rememberMe = rememberMe;
+			_password = password;
+			_defaultDatabase = defaultDatabase;
 		}
 		
 		/// <summary>
@@ -44,12 +63,14 @@ namespace MultiQuery.Server
 		
 		public override DataSet Execute(string sql)
 		{
+			DoSaveAfterExecute = false;
+			
 			DataSet data = new DataSet();
 			
 			bool executed = false;
 			bool stop = false;
 
-			SqlConnection con = new SqlConnection(this.ConString);
+			SqlConnection con = new SqlConnection(MsSqlServer.CreateConnectionString(_dns, _userName, _password, _useTrusted, _defaultDatabase));
 			SqlCommand com = new SqlCommand(sql, con);
 			SqlDataAdapter adapter = new SqlDataAdapter(com);
 			
@@ -68,10 +89,20 @@ namespace MultiQuery.Server
 					if (exp.ErrorCode == 18456) // Login Failed
 					{
 						frm_MsSqlServer_ConnectionDialog conDialog = new frm_MsSqlServer_ConnectionDialog();
+						conDialog.UserName = this._userName;
+						conDialog.Password = this._password;
+						conDialog.RememberMe = this._rememberMe;
+						conDialog.UseTrusted = this._useTrusted;
+						
 						DialogResult ret = conDialog.ShowDialog();
 						if (ret == DialogResult.OK)
 						{
+							_userName = conDialog.UserName;
+							_password = conDialog.Password;
+							_rememberMe = conDialog.RememberMe;
+							_useTrusted = conDialog.UseTrusted;
 							
+							DoSaveAfterExecute = true;
 						}
 						else if(ret == DialogResult.Cancel)
 						{
@@ -101,18 +132,23 @@ namespace MultiQuery.Server
 		/// <param name="useTrusted"></param>
 		/// <returns></returns>
 		
-		public static string CreateConnectionString(string dns, string userName, bool rememberMe, string password, bool useTrusted)
+		private static string CreateConnectionString(string dns, string userName, string password, bool useTrusted, string defaultDatabase)
 		{
 			string data = "Server=" + dns + ";";
 			
+			if (string.IsNullOrEmpty(defaultDatabase) == false)
+			{
+				data += "Database=" + defaultDatabase + ";";
+			}
 			
 			if (useTrusted == true)
+			{
 				data += "Trusted_Connection=True;";
+			}
 			else
 			{
 				data += "User Id=" + userName + ";";
-				if (rememberMe == true)
-					data += "Password=" + password + ";";
+				data += "Password=" + password + ";";
 			}
 			
 			return data;
@@ -127,9 +163,9 @@ namespace MultiQuery.Server
 		/// <param name="useTrusted"></param>
 		/// <returns></returns>
 		
-		public static bool TestConnection(string dns, string userName, string password, bool useTrusted)
+		public static bool TestConnection(string dns, string userName, string password, bool useTrusted, string defaultDatabase)
 		{
-			SqlConnection con = new SqlConnection(MsSqlServer.CreateConnectionString(dns, userName, true, password, useTrusted));
+			SqlConnection con = new SqlConnection(MsSqlServer.CreateConnectionString(dns, userName, password, useTrusted, defaultDatabase));
 				
 			con.Open();
 			con.Close();
@@ -155,7 +191,12 @@ namespace MultiQuery.Server
 
 		public MsSqlServer(SerializationInfo info, StreamingContext ctxt) : base (info, ctxt)
 		{
-		    
+			_dns = info.GetString("Dns");
+			_userName = info.GetString("UserName");
+			_useTrusted = info.GetBoolean("UseTrusted");
+			_rememberMe = info.GetBoolean("RememberMe");
+			_password = info.GetString("Password");
+			_defaultDatabase = info.GetString("DefaultDatabase");
 		}
 		        
 		/// <summary>
@@ -167,6 +208,12 @@ namespace MultiQuery.Server
 		public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			base.GetObjectData(info, ctxt);
+		    info.AddValue("Dns", _dns);
+		    info.AddValue("UserName", _userName);
+		    info.AddValue("UseTrusted", _useTrusted);
+		    info.AddValue("RememberMe", _rememberMe);
+		    info.AddValue("Password", _rememberMe ? _password : string.Empty);
+		    info.AddValue("DefaultDatabase", _defaultDatabase);
 		}
 	}
 }

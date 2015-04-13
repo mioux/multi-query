@@ -174,6 +174,8 @@ namespace MultiQuery
 		
 		void AddNewResult(Server.Server srv, string SQL)
 		{
+			bool doSave = false;
+			
 			TabPage newTab = new TabPage();
 			newTab.Text = srv.ServerName;
 			
@@ -182,6 +184,9 @@ namespace MultiQuery
 			try
 			{
 				DataSet data = srv.Execute(SQL);
+				doSave = doSave | srv.DoSaveAfterExecute;
+				srv.DoSaveAfterExecute = false;
+				
 				if (data.Tables.Count > 0)
 				{
 					TabControl tbc = new TabControl();
@@ -212,6 +217,11 @@ namespace MultiQuery
 				txt.Text = exp.Message + "\n\n" + exp.StackTrace;
 				
 				newTab.Controls.Add(txt);
+			}
+			
+			if (doSave == true)
+			{
+				SaveServerList();
 			}
 		}
 		
