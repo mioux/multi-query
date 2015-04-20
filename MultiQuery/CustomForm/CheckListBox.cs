@@ -7,11 +7,13 @@
  * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Data;
-using System.Collections.Generic;
+
+using MultiQuery.Config;
 
 namespace MultiQuery.CustomForm
 {
@@ -20,6 +22,8 @@ namespace MultiQuery.CustomForm
 	/// </summary>
 	public partial class CheckListBox : UserControl
 	{
+		private int ClickedServer { get; set; }
+		
 		/// <summary>
 		/// 
 		/// </summary>
@@ -210,6 +214,56 @@ namespace MultiQuery.CustomForm
 		public Server.Server GetServer(int idx)
 		{
 			return (Server.Server)SourceTable.Rows[idx]["Server"];
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void EditerToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			Server.Server server = (Server.Server)SourceTable.Rows[ClickedServer]["Server"];
+			
+			frm_newServer editDialog = new frm_newServer(server);
+			if (editDialog.ShowDialog() == DialogResult.OK)
+			{
+				((frm_main)ParentForm).SaveServerList();
+				this.Refresh();
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			DeleteServer(ClickedServer);
+		}
+				
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void Lbx_mainMouseUp(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Right)
+				return;
+			
+			ClickedServer = lbx_main.IndexFromPoint(e.Location);
+			
+			if (ClickedServer != -1)
+			{
+	            lbx_main.SelectedIndices.Clear();
+	            lbx_main.SelectedIndices.Add(ClickedServer);
+				ctx_menuEditDelete.Show();
+			}
 		}
 	}
 }

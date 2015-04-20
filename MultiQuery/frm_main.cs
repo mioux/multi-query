@@ -229,7 +229,7 @@ namespace MultiQuery
 		/// 
 		/// </summary>
 		
-		void SaveServerList()
+		public void SaveServerList()
 		{
 			try
 			{

@@ -183,6 +183,7 @@ namespace MultiQuery
 			this.ClientSize = new System.Drawing.Size(632, 455);
 			this.Controls.Add(this.spc_main);
 			this.Controls.Add(this.mnu_main);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.mnu_main;
 			this.Name = "frm_main";
 			this.Text = "multi-query";

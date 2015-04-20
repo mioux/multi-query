@@ -55,7 +55,9 @@ namespace MultiQuery.Forms
 		
 		void rtb_sql_TextChanged(object sender, EventArgs e)
 		{
-			Dictionary<string, Color> cl = new Dictionary<string, Color>();
+			return;
+			
+			/*Dictionary<string, Color> cl = new Dictionary<string, Color>();
 			
 			cl.Add("ADD", Color.Salmon);
 			cl.Add("ALL", Color.Gray);
@@ -256,7 +258,7 @@ namespace MultiQuery.Forms
 		        rtb_sql.SelectionColor = cl[m.Value.ToUpper()];
 		        rtb_sql.SelectionStart = StartCursorPosition;  
 		        rtb_sql.SelectionColor = Color.Black;  
-		    }  
+		    }  */
 		}
 		
 		/// <summary>
