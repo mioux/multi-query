@@ -243,6 +243,7 @@ namespace MultiQuery.CustomForm
 		void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			DeleteServer(ClickedServer);
+			((frm_main)ParentForm).SaveServerList();
 		}
 				
 		/// <summary>
