@@ -31,6 +31,13 @@ namespace MultiQuery.Server
 		private string _password = string.Empty;
 		private string _defaultDatabase = string.Empty;
 		
+		public string Dns { get { return _dns; } private set {}}
+		public string UserName { get { return _userName; } private set {}}
+		public bool UseTrusted { get { return _useTrusted; } private set {}}
+		public bool RememberMe { get { return _rememberMe; } private set {}}
+		public string Password { get { return _password; } private set {}}
+		public string DefaultDatabase { get { return _defaultDatabase; } private set {}}
+		
 		public static MsSqlServer New(string dns, string userName, bool rememberMe, string password, bool useTrusted, string serverName, Color color, string defaultDatabese)
 		{
 			MsSqlServer newServer = new MsSqlServer(serverName, color, dns, userName, rememberMe, password, useTrusted, defaultDatabese);
@@ -214,6 +221,30 @@ namespace MultiQuery.Server
 		    info.AddValue("RememberMe", _rememberMe);
 		    info.AddValue("Password", _rememberMe ? _password : string.Empty);
 		    info.AddValue("DefaultDatabase", _defaultDatabase);
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="dns"></param>
+		/// <param name="userName"></param>
+		/// <param name="rememberMe"></param>
+		/// <param name="password"></param>
+		/// <param name="useTrusted"></param>
+		/// <param name="serverName"></param>
+		/// <param name="color"></param>
+		/// <param name="defaultDatabese"></param>
+		
+		public void SetNewValues(string dns, string userName, bool rememberMe, string password, bool useTrusted, string serverName, Color color, string defaultDatabese)
+		{
+			base.SetNewValues(serverName, color);
+			
+			this._dns = dns;
+			this._userName = userName;
+			this._rememberMe = rememberMe;
+			this._password = password;
+			this._useTrusted = useTrusted;
+			this._defaultDatabase = defaultDatabese;
 		}
 	}
 }

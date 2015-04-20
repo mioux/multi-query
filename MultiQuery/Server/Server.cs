@@ -84,5 +84,17 @@ namespace MultiQuery.Server
 		    info.AddValue("ServerName", ServerName);
 		    info.AddValue("ServerColor", ServerColor);
 		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serverName"></param>
+		/// <param name="serverColor"></param>
+		
+		public virtual void SetNewValues(string serverName, Color serverColor)
+		{
+			ServerName = serverName;
+			ServerColor = serverColor;
+		}
 	}
 }

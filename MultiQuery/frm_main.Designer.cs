@@ -43,6 +43,7 @@ namespace MultiQuery
 			this.serveurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.editerLesServeursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exécuterSurTousLesServeursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +89,7 @@ namespace MultiQuery
 			this.serveurToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.ajouterToolStripMenuItem,
 									this.supprimerToolStripMenuItem,
+									this.editerLesServeursToolStripMenuItem,
 									this.toolStripSeparator1,
 									this.exécuterSurLesServeursSélectionnésToolStripMenuItem,
 									this.exécuterSurTousLesServeursToolStripMenuItem});
@@ -110,6 +112,14 @@ namespace MultiQuery
 			this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.supprimerToolStripMenuItem.Text = "&Supprimer";
 			this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.SupprimerToolStripMenuItemClick);
+			// 
+			// editerLesServeursToolStripMenuItem
+			// 
+			this.editerLesServeursToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editerLesServeursToolStripMenuItem.Image")));
+			this.editerLesServeursToolStripMenuItem.Name = "editerLesServeursToolStripMenuItem";
+			this.editerLesServeursToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+			this.editerLesServeursToolStripMenuItem.Text = "É&diter le serveur";
+			this.editerLesServeursToolStripMenuItem.Click += new System.EventHandler(this.EditerLeServeurToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1
 			// 
@@ -184,6 +194,7 @@ namespace MultiQuery
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem editerLesServeursToolStripMenuItem;
 		private MultiQuery.CustomForm.CheckListBox clb_serverList;
 		private System.ComponentModel.BackgroundWorker bgw_executeQuery;
 		private System.Windows.Forms.MenuStrip mnu_main;

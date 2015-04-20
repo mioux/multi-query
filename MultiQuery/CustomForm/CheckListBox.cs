@@ -186,5 +186,30 @@ namespace MultiQuery.CustomForm
 			
 			return data.ToArray();
 		}
+		
+		/// <summary>
+		/// Raffraichir la liste des serveurs.
+		/// </summary>
+		
+		public override void Refresh()
+		{
+			foreach (DataRow row in SourceTable.Rows)
+			{
+				row["ServerColor"] = ((Server.Server)row["Server"]).ServerColor;
+			}
+			
+			base.Refresh();
+		}
+		
+		/// <summary>
+		/// Renvoie le serveur à l'index idx.
+		/// </summary>
+		/// <param name="idx">Index du serveur.</param>
+		/// <returns></returns>
+		
+		public Server.Server GetServer(int idx)
+		{
+			return (Server.Server)SourceTable.Rows[idx]["Server"];
+		}
 	}
 }

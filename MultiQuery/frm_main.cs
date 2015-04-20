@@ -256,5 +256,29 @@ namespace MultiQuery
 				MessageBox.Show("Ne peut enregistrer la liste des serveurs.\n" + exp.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void EditerLeServeurToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (clb_serverList.SelectedIndices.Count != 1)
+			{
+				MessageBox.Show("Vous ne pouvez sélectionner qu'un serveur à la fois", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+			
+			Server.Server srv = clb_serverList.GetServer(clb_serverList.SelectedIndices[0]);
+						
+			frm_newServer editDialog = new frm_newServer(srv);
+			if (editDialog.ShowDialog() == DialogResult.OK)
+			{
+				SaveServerList();
+				clb_serverList.Refresh();
+			}
+		}
 	}
 }

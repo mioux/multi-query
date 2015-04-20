@@ -22,6 +22,10 @@ namespace MultiQuery.Config
 		public bool RememberMe { get { return chx_rememberMe.Checked; } set { chx_rememberMe.Checked = value; } }
 		public bool UseTrusted { get { return cbx_authent.SelectedIndex == 0; } set { cbx_authent.SelectedIndex = value ? 0 : 1; } }
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		
 		public frm_MsSqlServer_ConnectionDialog()
 		{
 			//

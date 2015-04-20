@@ -18,7 +18,15 @@ namespace MultiQuery.Config
 	/// </summary>
 	public partial class frm_newServer : Form
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		
 		public Server.Server NewServer { get; set; }
+		
+		/// <summary>
+		/// 
+		/// </summary>
 		
 		public frm_newServer()
 		{
@@ -30,6 +38,40 @@ namespace MultiQuery.Config
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="srv"></param>
+		
+		public frm_newServer(Server.Server srv)
+		{
+			InitializeComponent();
+			
+			NewServer = srv;
+			
+			txt_serverName.Text = srv.ServerName;
+			pan_color.BackColor = srv.ServerColor;
+			
+			if (srv is Server.MsSqlServer)
+			{
+				cbx_type.SelectedIndex = 0;
+				Server.MsSqlServer server = (Server.MsSqlServer)srv;
+				txt_username.Text = server.UserName;
+				txt_pw.Text = server.Password;
+				txt_defaultDatabase.Text = server.DefaultDatabase;
+				txt_server.Text = server.Dns;
+				chx_rememberMe.Checked = server.RememberMe;
+				if (server.UseTrusted == true)
+				{
+					cbx_authent.SelectedIndex = 0;
+				}
+				else
+				{
+					cbx_authent.SelectedIndex = 1;
+				}
+			}
 		}
 		
 		/// <summary>
@@ -65,16 +107,30 @@ namespace MultiQuery.Config
 				return;
 			}
 			
-			NewServer = MsSqlServer.New(
-				txt_server.Text,
-				txt_username.Text,
-				chx_rememberMe.Checked,
-				txt_pw.Text,
-				cbx_authent.SelectedIndex == 0,
-				txt_serverName.Text,
-				pan_color.BackColor,
-				txt_defaultDatabase.Text);
-			
+			if (NewServer == null)
+			{
+				NewServer = MsSqlServer.New(
+					txt_server.Text,
+					txt_username.Text,
+					chx_rememberMe.Checked,
+					txt_pw.Text,
+					cbx_authent.SelectedIndex == 0,
+					txt_serverName.Text,
+					pan_color.BackColor,
+					txt_defaultDatabase.Text);
+			}
+			else
+			{
+				((Server.MsSqlServer)NewServer).SetNewValues(
+					txt_server.Text,
+					txt_username.Text,
+					chx_rememberMe.Checked,
+					txt_pw.Text,
+					cbx_authent.SelectedIndex == 0,
+					txt_serverName.Text,
+					pan_color.BackColor,
+					txt_defaultDatabase.Text);
+			}
 			this.DialogResult = DialogResult.OK;
 			
 			this.Close();
