@@ -19,13 +19,13 @@ namespace MultiQuery.Config
 	public partial class frm_newServer : Form
 	{
 		/// <summary>
-		/// 
+		/// Valeur du serveur.
 		/// </summary>
 		
 		public Server.Server NewServer { get; set; }
 		
 		/// <summary>
-		/// 
+		/// Création d'un nouveau serveur.
 		/// </summary>
 		
 		public frm_newServer()
@@ -34,16 +34,12 @@ namespace MultiQuery.Config
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		
 		/// <summary>
-		/// 
+		/// Modification d'un serveur existant.
 		/// </summary>
-		/// <param name="srv"></param>
+		/// <param name="srv">Serveur à éditer.</param>
 		
 		public frm_newServer(Server.Server srv)
 		{
@@ -77,8 +73,8 @@ namespace MultiQuery.Config
 		/// <summary>
 		/// Changement de couleur.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Pan_colorClick(object sender, EventArgs e)
 		{
@@ -91,8 +87,8 @@ namespace MultiQuery.Config
 		/// <summary>
 		/// Ajout d'un serveur.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Btn_okClick(object sender, EventArgs e)
 		{
@@ -137,10 +133,10 @@ namespace MultiQuery.Config
 		}
 		
 		/// <summary>
-		/// Annuler
+		/// Annuler.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Btn_annulerClick(object sender, EventArgs e)
 		{
@@ -151,8 +147,8 @@ namespace MultiQuery.Config
 		/// <summary>
 		/// Tester la connexion au serveur.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Btn_testClick(object sender, EventArgs e)
 		{
@@ -170,8 +166,8 @@ namespace MultiQuery.Config
 		/// <summary>
 		/// Chargement de la fenêtre.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Frm_newServerLoad(object sender, EventArgs e)
 		{
@@ -182,8 +178,8 @@ namespace MultiQuery.Config
 		/// <summary>
 		/// Changement du type de connexion.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Cbx_authentSelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -207,10 +203,10 @@ namespace MultiQuery.Config
 		}
 		
 		/// <summary>
-		/// 
+		/// Change le nom du serveur en mettant par défaut le host ou l'IP renseignée.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Txt_serverLeave(object sender, EventArgs e)
 		{

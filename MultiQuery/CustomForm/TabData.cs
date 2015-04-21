@@ -24,14 +24,10 @@ namespace MultiQuery.CustomForm
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		
 		/// <summary>
-		/// 
+		/// Source de données.
 		/// </summary>
 		
 		public object DataSource { get { return dgv_data.DataSource; } set { dgv_data.DataSource = value; } }

@@ -132,7 +132,7 @@ namespace MultiQuery
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Name = "exécuterSurLesServeursSélectionnésToolStripMenuItem";
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Text = "&Exécuter sur les serveurs sélectionnés";
-			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Click += new System.EventHandler(this.ExécuterSurLesServeursSélectionnésToolStripMenuItemClick);
+			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurLesServeursSelectionnesToolStripMenuItemClick);
 			// 
 			// exécuterSurTousLesServeursToolStripMenuItem
 			// 
@@ -140,7 +140,7 @@ namespace MultiQuery
 			this.exécuterSurTousLesServeursToolStripMenuItem.Name = "exécuterSurTousLesServeursToolStripMenuItem";
 			this.exécuterSurTousLesServeursToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
 			this.exécuterSurTousLesServeursToolStripMenuItem.Text = "E&xécuter sur tous les serveurs";
-			this.exécuterSurTousLesServeursToolStripMenuItem.Click += new System.EventHandler(this.ExécuterSurTousLesServeursToolStripMenuItemClick);
+			this.exécuterSurTousLesServeursToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurTousLesServeursToolStripMenuItemClick);
 			// 
 			// spc_main
 			// 

@@ -24,20 +24,78 @@ namespace MultiQuery.Server
 	[Serializable()]
 	public class MsSqlServer : Server
 	{
+		/// <summary>
+		/// Host ou IP de connexion (valeu).
+		/// </summary>
 		private string _dns = string.Empty;
+		
+		/// <summary>
+		/// Nom d'utilisateur (valeur).
+		/// </summary>
 		private string _userName = string.Empty;
+		
+		/// <summary>
+		/// Utilise le login Windows pour la connexion (valeur).
+		/// </summary>
 		private bool _useTrusted = true;
+		
+		/// <summary>
+		/// Se souvenir de moi (valeur).
+		/// </summary>
 		private bool _rememberMe = false;
+		
+		/// <summary>
+		/// Mot de passe (valeur).
+		/// </summary>
 		private string _password = string.Empty;
+		
+		/// <summary>
+		/// Base par défaut (valeur).
+		/// </summary>
 		private string _defaultDatabase = string.Empty;
 		
+		/// <summary>
+		/// Host ou IP de connexion (accesseur).
+		/// </summary>
 		public string Dns { get { return _dns; } private set {}}
+		
+		/// <summary>
+		/// Nom d'utilisateur (accesseur).
+		/// </summary>
 		public string UserName { get { return _userName; } private set {}}
+		
+		/// <summary>
+		/// Utilisation du login Windows pour se connecter (accesseur).
+		/// </summary>
 		public bool UseTrusted { get { return _useTrusted; } private set {}}
+		
+		/// <summary>
+		/// Se souvenir des identifiants (accesseur).
+		/// </summary>
 		public bool RememberMe { get { return _rememberMe; } private set {}}
+		
+		/// <summary>
+		/// Mot de passe (accesseur).
+		/// </summary>
 		public string Password { get { return _password; } private set {}}
+		
+		/// <summary>
+		/// Base par défaut.
+		/// </summary>
 		public string DefaultDatabase { get { return _defaultDatabase; } private set {}}
 		
+		/// <summary>
+		/// Instanciation d'un nouveau serveur SQL Server.
+		/// </summary>
+		/// <param name="dns">Host ou IP de connexion.</param>
+		/// <param name="userName">Utilisateur.</param>
+		/// <param name="rememberMe">Se souvenir des paramètres de connexion.</param>
+		/// <param name="password">Mot de passe.</param>
+		/// <param name="useTrusted">Utilisation du login Windows.</param>
+		/// <param name="serverName">Nom d'affichage.</param>
+		/// <param name="color">Couleur d'affichage.</param>
+		/// <param name="defaultDatabese">Base par défaut.</param>
+		/// <returns>Nouveau MsSqlServer.</returns>
 		public static MsSqlServer New(string dns, string userName, bool rememberMe, string password, bool useTrusted, string serverName, Color color, string defaultDatabese)
 		{
 			MsSqlServer newServer = new MsSqlServer(serverName, color, dns, userName, rememberMe, password, useTrusted, defaultDatabese);
@@ -46,11 +104,16 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// 
+		/// Constructeur d'un serveur SQL Server.
 		/// </summary>
-		/// <param name="connectionString"></param>
-		/// <param name="serverName"></param>
-		/// <param name="serverColor"></param>
+		/// <param name="serverName">Nom d'affichage.</param>
+		/// <param name="color">Couleur d'affichage.</param>
+		/// <param name="dns">Host ou IP de connexion.</param>
+		/// <param name="userName">Utilisateur.</param>
+		/// <param name="rememberMe">Se souvenir des paramètres de connexion.</param>
+		/// <param name="password">Mot de passe.</param>
+		/// <param name="useTrusted">Utilisation du login Windows.</param>
+		/// <param name="defaultDatabese">Base par défaut.</param>
 		
 		private MsSqlServer(string serverName, Color serverColor, string dns, string userName, bool rememberMe, string password, bool useTrusted, string defaultDatabase) : base (serverName, serverColor)
 		{
@@ -63,10 +126,10 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// 
+		/// Exécution d'une requête sur le serveur.
 		/// </summary>
-		/// <param name="sql"></param>
-		/// <returns></returns>
+		/// <param name="sql">Requête à exécuter.</param>
+		/// <returns>Jeu de résultats.</returns>
 		
 		public override DataSet Execute(string sql)
 		{
@@ -130,13 +193,14 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// 
+		/// Création d'une chaîne de connexion en fonction des paramètres du serveur.
+		/// Mis en statique pour pouvoir utiliser la fonction de test sans créer de nouveau serveur.
 		/// </summary>
-		/// <param name="dns"></param>
-		/// <param name="userName"></param>
-		/// <param name="rememberMe"></param>
-		/// <param name="password"></param>
-		/// <param name="useTrusted"></param>
+		/// <param name="dns">Host ou IP du serveur.</param>
+		/// <param name="userName">Nom d'utilisateur.</param>
+		/// <param name="password">Mot de passe.</param>
+		/// <param name="useTrusted">Utilisation du login Windows.</param>
+		/// <param name="defaultDatabase">Base par défaut.</param>
 		/// <returns></returns>
 		
 		private static string CreateConnectionString(string dns, string userName, string password, bool useTrusted, string defaultDatabase)
@@ -162,13 +226,13 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// 
+		/// Tester une connexion à un serveur.
 		/// </summary>
-		/// <param name="dns"></param>
-		/// <param name="userName"></param>
-		/// <param name="password"></param>
-		/// <param name="useTrusted"></param>
-		/// <returns></returns>
+		/// <param name="dns">Host ou IP du serveur.</param>
+		/// <param name="userName">Nom d'utilisateur.</param>
+		/// <param name="password">Mot de passe.</param>
+		/// <param name="useTrusted">Utilisation du login Windows.</param>
+		/// <returns>Vrai ou exception si la connexion ne peut s'effectuer.</returns>
 		
 		public static bool TestConnection(string dns, string userName, string password, bool useTrusted, string defaultDatabase)
 		{
@@ -181,9 +245,9 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// 
+		/// Renvoie le nom du serveur.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Nom du serveur.</returns>
 		
 		public override string ToString()
 		{
@@ -191,10 +255,10 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// Deserialization constructor.
+		/// Constructeur depuis désérialisation.
 		/// </summary>
-		/// <param name="info"></param>
-		/// <param name="ctxt"></param>
+		/// <param name="info">Infos de désérialisation.</param>
+		/// <param name="ctxt">Contexte de désérialisation.</param>
 
 		public MsSqlServer(SerializationInfo info, StreamingContext ctxt) : base (info, ctxt)
 		{
@@ -207,10 +271,10 @@ namespace MultiQuery.Server
 		}
 		        
 		/// <summary>
-		/// Serialization function.
+		/// Fonction de sérialisation.
 		/// </summary>
-		/// <param name="info"></param>
-		/// <param name="ctxt"></param>
+		/// <param name="info">Infos de désérialisation.</param>
+		/// <param name="ctxt">Contexte de désérialisation.</param>
 
 		public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
@@ -224,16 +288,16 @@ namespace MultiQuery.Server
 		}
 		
 		/// <summary>
-		/// 
+		/// Change les valeurs du serveur en cours.
 		/// </summary>
-		/// <param name="dns"></param>
-		/// <param name="userName"></param>
-		/// <param name="rememberMe"></param>
-		/// <param name="password"></param>
-		/// <param name="useTrusted"></param>
-		/// <param name="serverName"></param>
-		/// <param name="color"></param>
-		/// <param name="defaultDatabese"></param>
+		/// <param name="dns">Host ou IP du serveur.</param>
+		/// <param name="userName">Nom d'utilisateur.</param>
+		/// <param name="rememberMe">Se souvenir des paramètres de connexion.</param>
+		/// <param name="password">Mot de passe.</param>
+		/// <param name="useTrusted">Utilisation du login Windows/</param>
+		/// <param name="serverName">Nom d'affichage du serveur.</param>
+		/// <param name="color">Couleur d'affichage.</param>
+		/// <param name="defaultDatabese">Base par défaut.</param>
 		
 		public void SetNewValues(string dns, string userName, bool rememberMe, string password, bool useTrusted, string serverName, Color color, string defaultDatabese)
 		{

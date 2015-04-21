@@ -22,20 +22,25 @@ namespace MultiQuery.CustomForm
 	/// </summary>
 	public partial class CheckListBox : UserControl
 	{
+		/// <summary>
+		/// Serveur cliqué par clic droit.
+		/// </summary>
+		
 		private int ClickedServer { get; set; }
 		
 		/// <summary>
-		/// 
+		/// Source de données. Ne peut utiliser le DataSource de la ListBox
+		/// pour avoir le contrôle sur la checkbox.
 		/// </summary>
 		private DataTable SourceTable { get; set; }
 		
 		/// <summary>
-		/// 
+		/// Liste des serveurs sélectionnés.
 		/// </summary>
 		private List<Server.Server> Selected { get; set; }
 		
 		/// <summary>
-		/// 
+		/// Tableau de serveurs sélectionnés.
 		/// </summary>
 		/// <returns></returns>
 		
@@ -45,9 +50,9 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Ajoute un nouveau serveur à la liste.
 		/// </summary>
-		/// <param name="newServer"></param>
+		/// <param name="newServer">Nouveau serveur à ajouter.</param>
 		
 		public DataRow AddServer(Server.Server newServer)
 		{
@@ -68,7 +73,7 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Constructeur.
 		/// </summary>
 		
 		public CheckListBox()
@@ -77,10 +82,6 @@ namespace MultiQuery.CustomForm
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 			
 			this.SourceTable = new DataTable();
 			this.SourceTable.Columns.Add("Server", typeof(Server.Server));
@@ -95,10 +96,10 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Dessin d'un nouvel item.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void lbx_main_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -116,10 +117,10 @@ namespace MultiQuery.CustomForm
         }
 		
 		/// <summary>
-		/// 
+		/// Clic sur une check box. Ajoute ou retire le serveur à la liste des sélectionnés.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void ListBoxUpdate_CheckedChanged(object sender, EventArgs e)
 		{
@@ -141,7 +142,8 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Liste des indices sélectionnés.
+		/// Passé en ReadOnly pour ne pas interférer avec la gestion de la checkbox.
 		/// </summary>
 		
 		public ListBox.SelectedIndexCollection SelectedIndices
@@ -154,9 +156,9 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Efface un serveur de la liste.
 		/// </summary>
-		/// <param name="index"></param>
+		/// <param name="index">Index du serveur à supprimer.</param>
 		
 		public void DeleteServer(int index)
 		{
@@ -176,9 +178,9 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Renvoie la liste complète des serveurs.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Tous les serveurs de la liste.</returns>
 		
 		public Server.Server[] GetAll()
 		{
@@ -217,10 +219,10 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Editer le serveur par clic droit.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void EditerToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -235,10 +237,10 @@ namespace MultiQuery.CustomForm
 		}
 		
 		/// <summary>
-		/// 
+		/// Supprimer le serveur par clic droit.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -247,10 +249,10 @@ namespace MultiQuery.CustomForm
 		}
 				
 		/// <summary>
-		/// 
+		/// Gestion du clic droit.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Lbx_mainMouseUp(object sender, MouseEventArgs e)
 		{
@@ -264,6 +266,24 @@ namespace MultiQuery.CustomForm
 	            lbx_main.SelectedIndices.Clear();
 	            lbx_main.SelectedIndices.Add(ClickedServer);
 				ctx_menuEditDelete.Show();
+			}
+		}
+		
+		/// <summary>
+		/// Exécuter une requête sur un serveur seul.
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		void ExecuterSurCeServeurToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			Server.Server server = (Server.Server)SourceTable.Rows[ClickedServer]["Server"];
+			frm_main parent = (frm_main)this.ParentForm;
+			
+			if (parent.frmSql.ShowDialog() == DialogResult.OK)
+			{
+				parent.ClearPages();
+				parent.AddNewResult(server, parent.frmSql.Data);
 			}
 		}
 	}

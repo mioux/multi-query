@@ -28,7 +28,7 @@ namespace MultiQuery
 		/// <summary>
 		/// Requête.
 		/// </summary>
-		Forms.frm_sql frmSql = new MultiQuery.Forms.frm_sql();
+		public Forms.frm_sql frmSql = new MultiQuery.Forms.frm_sql();
 		
 		/// <summary>
 		/// Constructeur.
@@ -39,10 +39,6 @@ namespace MultiQuery
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 			
 			if (File.Exists("ServerList.xml"))
 		    {
@@ -73,8 +69,8 @@ namespace MultiQuery
 		/// <summary>
 		/// Ajouter un serveur.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		void AjouterToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			frm_newServer newServer = new frm_newServer();
@@ -88,10 +84,10 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Supprimer les serveurs sélectionnés.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			List<int> liste = new List<int>();
@@ -116,12 +112,12 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Exécuter une requête sur les serveurs cochés.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
-		void ExécuterSurLesServeursSélectionnésToolStripMenuItemClick(object sender, EventArgs e)
+		void ExecuterSurLesServeursSelectionnesToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			string sql = string.Empty;
 			
@@ -136,12 +132,12 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Exécuter une requête sur tous les serveurs.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
-		void ExécuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
+		void ExecuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			string sql = string.Empty;
 			
@@ -156,10 +152,10 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Quitter l'application.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void QuitterToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -167,12 +163,12 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Ajouter un résultat dans la lsite.
 		/// </summary>
-		/// <param name="srv"></param>
-		/// <param name="SQL"></param>
+		/// <param name="srv">Serveur d'exécution.</param>
+		/// <param name="SQL">Serveur d'exécution.</param>
 		
-		void AddNewResult(Server.Server srv, string SQL)
+		public void AddNewResult(Server.Server srv, string SQL)
 		{
 			bool doSave = false;
 			
@@ -226,7 +222,8 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Sauvegarder la liste des serveurs dans le fichier "ServerList.xml".
+		/// Les données sont entièrement chiffrées.
 		/// </summary>
 		
 		public void SaveServerList()
@@ -258,10 +255,10 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Editer le serveur sélectionné.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void EditerLeServeurToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -279,6 +276,15 @@ namespace MultiQuery
 				SaveServerList();
 				clb_serverList.Refresh();
 			}
+		}
+		
+		/// <summary>
+		/// Effacer les pages de résultat.
+		/// </summary>
+		
+		public void ClearPages()
+		{
+			tbc_result.TabPages.Clear();
 		}
 	}
 }

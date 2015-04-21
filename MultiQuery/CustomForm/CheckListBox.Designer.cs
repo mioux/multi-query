@@ -42,6 +42,7 @@ namespace MultiQuery.CustomForm
 			this.ctx_menuEditDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.editerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.executerSurCeServeurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ctx_menuEditDelete.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -60,16 +61,17 @@ namespace MultiQuery.CustomForm
 			// ctx_menuEditDelete
 			// 
 			this.ctx_menuEditDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.executerSurCeServeurToolStripMenuItem,
 									this.editerToolStripMenuItem,
 									this.supprimerToolStripMenuItem});
 			this.ctx_menuEditDelete.Name = "contextMenuStrip1";
-			this.ctx_menuEditDelete.Size = new System.Drawing.Size(130, 48);
+			this.ctx_menuEditDelete.Size = new System.Drawing.Size(194, 92);
 			// 
 			// editerToolStripMenuItem
 			// 
 			this.editerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editerToolStripMenuItem.Image")));
 			this.editerToolStripMenuItem.Name = "editerToolStripMenuItem";
-			this.editerToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+			this.editerToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
 			this.editerToolStripMenuItem.Text = "Editer";
 			this.editerToolStripMenuItem.Click += new System.EventHandler(this.EditerToolStripMenuItemClick);
 			// 
@@ -77,9 +79,17 @@ namespace MultiQuery.CustomForm
 			// 
 			this.supprimerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("supprimerToolStripMenuItem.Image")));
 			this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
-			this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+			this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
 			this.supprimerToolStripMenuItem.Text = "Supprimer";
 			this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.SupprimerToolStripMenuItemClick);
+			// 
+			// exécuterSurCeServeurToolStripMenuItem
+			// 
+			this.executerSurCeServeurToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exécuterSurCeServeurToolStripMenuItem.Image")));
+			this.executerSurCeServeurToolStripMenuItem.Name = "exécuterSurCeServeurToolStripMenuItem";
+			this.executerSurCeServeurToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.executerSurCeServeurToolStripMenuItem.Text = "Exécuter sur ce serveur";
+			this.executerSurCeServeurToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurCeServeurToolStripMenuItemClick);
 			// 
 			// CheckListBox
 			// 
@@ -91,6 +101,7 @@ namespace MultiQuery.CustomForm
 			this.ctx_menuEditDelete.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.ToolStripMenuItem executerSurCeServeurToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip ctx_menuEditDelete;
 		private System.Windows.Forms.ToolStripMenuItem supprimerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editerToolStripMenuItem;

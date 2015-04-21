@@ -29,10 +29,6 @@ namespace MultiQuery.Forms
 			//
 			InitializeComponent();
 			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-			
 			if (File.Exists("last.sql"))
 			{
 				try
@@ -50,8 +46,8 @@ namespace MultiQuery.Forms
 		/// <summary>
 		/// Coloration syntaxique.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void rtb_sql_TextChanged(object sender, EventArgs e)
 		{
@@ -264,8 +260,8 @@ namespace MultiQuery.Forms
 		/// <summary>
 		/// Bouton OK
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Btn_okClick(object sender, EventArgs e)
 		{

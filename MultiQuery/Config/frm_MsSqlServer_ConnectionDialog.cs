@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace MultiQuery.Config
 {
 	/// <summary>
-	/// Description of frm_MsSqlServer_ConnectionDialog.
+	/// Fenêtre de changement de login sur MsSqlServer.
 	/// </summary>
 	public partial class frm_MsSqlServer_ConnectionDialog : Form
 	{
@@ -23,7 +23,7 @@ namespace MultiQuery.Config
 		public bool UseTrusted { get { return cbx_authent.SelectedIndex == 0; } set { cbx_authent.SelectedIndex = value ? 0 : 1; } }
 		
 		/// <summary>
-		/// 
+		/// Constructeur.
 		/// </summary>
 		
 		public frm_MsSqlServer_ConnectionDialog()
@@ -32,17 +32,13 @@ namespace MultiQuery.Config
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		
 		/// <summary>
-		/// 
+		/// Changement du type de connexion.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Cbx_authentSelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -66,10 +62,10 @@ namespace MultiQuery.Config
 		}
 		
 		/// <summary>
-		/// 
+		/// Validation.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Btn_okClick(object sender, EventArgs e)
 		{
@@ -78,10 +74,10 @@ namespace MultiQuery.Config
 		}
 		
 		/// <summary>
-		/// 
+		/// Annulation.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
 		void Btn_annulerClick(object sender, EventArgs e)
 		{
