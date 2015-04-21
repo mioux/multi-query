@@ -33,6 +33,9 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
+    <Reference Include="ICSharpCode.TextEditor">
+      <HintPath>ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -93,12 +96,17 @@
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="hl\sql.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="icon.ico" />
+    <None Include="ICSharpCode.TextEditor.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config" />
     <Folder Include="CustomForm" />
     <Folder Include="Forms" />
+    <Folder Include="hl" />
     <Folder Include="Server" />
   </ItemGroup>
 </Project>

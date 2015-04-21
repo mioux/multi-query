@@ -39,7 +39,7 @@ namespace MultiQuery.Forms
 			this.btn_ok = new System.Windows.Forms.Button();
 			this.btn_cancel = new System.Windows.Forms.Button();
 			this.pan_sql = new System.Windows.Forms.Panel();
-			this.rtb_sql = new System.Windows.Forms.RichTextBox();
+			this.rtb_sql = new ICSharpCode.TextEditor.TextEditorControl();
 			this.pan_sql.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -74,17 +74,12 @@ namespace MultiQuery.Forms
 			// 
 			// rtb_sql
 			// 
-			this.rtb_sql.AcceptsTab = true;
-			this.rtb_sql.DetectUrls = false;
 			this.rtb_sql.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rtb_sql.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rtb_sql.IsReadOnly = false;
 			this.rtb_sql.Location = new System.Drawing.Point(0, 0);
 			this.rtb_sql.Name = "rtb_sql";
-			this.rtb_sql.ShortcutsEnabled = false;
 			this.rtb_sql.Size = new System.Drawing.Size(446, 361);
 			this.rtb_sql.TabIndex = 0;
-			this.rtb_sql.Text = "";
-			this.rtb_sql.TextChanged += new System.EventHandler(this.rtb_sql_TextChanged);
 			// 
 			// frm_sql
 			// 
@@ -100,7 +95,7 @@ namespace MultiQuery.Forms
 			this.pan_sql.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.RichTextBox rtb_sql;
+		private ICSharpCode.TextEditor.TextEditorControl rtb_sql;
 		private System.Windows.Forms.Panel pan_sql;
 		private System.Windows.Forms.Button btn_cancel;
 		private System.Windows.Forms.Button btn_ok;

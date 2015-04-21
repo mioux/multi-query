@@ -1,0 +1,209 @@
+﻿<?xml version="1.0"?>
+<!-- syntaxdefinition for C# 2000 by Mike Krueger -->
+
+<SyntaxDefinition name = "sql" extensions = ".sql">
+
+    <Properties>
+        <Property name="LineComment" value="--"/>
+    </Properties>
+
+    <RuleSets>
+        <RuleSet ignorecase="true">
+            <Delimiters>&amp;&lt;&gt;~!%^*()-+=|\#/{}[]:;"' ,	.?</Delimiters>
+
+        	<Span name = "BlockComment" rule = "CommentMarkerSet" bold = "false" italic = "false" color = "Green" stopateol = "false">
+                <Begin>/*</Begin>
+                <End>*/</End>
+            </Span>
+
+            <MarkPrevious bold = "true" italic = "false" color = "MidnightBlue">(</MarkPrevious>
+
+            <KeyWords name = "Functions" bold="false" italic="false" color="Salmon">
+                <Key word = "ADD" />
+                <Key word = "COALESCE" />
+                <Key word = "CONTAINS" />
+                <Key word = "CONVERT" />
+                <Key word = "IDENTITY" />
+                <Key word = "IDENTITYCOL" />
+                <Key word = "IDENTITY_INSERT" />
+                <Key word = "KILL" />
+                <Key word = "NULLIF" />
+                <Key word = "RAISERROR" />
+                <Key word = "READ" />
+                <Key word = "READTEXT" />
+                <Key word = "RECONFIGURE" />
+                <Key word = "REFERENCES" />
+                <Key word = "REPLICATION" />
+                <Key word = "ROWCOUNT" />
+                <Key word = "ROWGUIDCOL" />
+                <Key word = "SAVE" />
+                <Key word = "STATISTICS" />
+                <Key word = "SYSTEM_USER" />
+                <Key word = "TEXTSIZE" />
+                <Key word = "UPDATETEXT" />
+                <Key word = "USER" />
+                <Key word = "WRITETEXT" />
+            </KeyWords>
+
+            <KeyWords name = "Others" bold="false" italic="false" color="Gray">
+                <Key word = "ALL" />
+                <Key word = "AND" />
+                <Key word = "ANY" />
+                <Key word = "BETWEEN" />
+                <Key word = "BROWSE" />
+                <Key word = "CROSS" />
+                <Key word = "CURRENT_DATE" />
+                <Key word = "CURRENT_TIME" />
+                <Key word = "CURRENT_TIMESTAMP" />
+                <Key word = "CURRENT_USER" />
+                <Key word = "ERRLVL" />
+                <Key word = "EXCEPT" />
+                <Key word = "EXISTS" />
+                <Key word = "FILE" />
+                <Key word = "FILLFACTOR" />
+                <Key word = "FULL" />
+                <Key word = "GRANT" />
+                <Key word = "HOLDLOCK" />
+                <Key word = "IN" />
+                <Key word = "IS" />
+                <Key word = "JOIN" />
+                <Key word = "LEFT" />
+                <Key word = "LIKE" />
+                <Key word = "LINENO" />
+                <Key word = "LOAD" />
+                <Key word = "NATIONAL" />
+                <Key word = "NOT" />
+                <Key word = "NULL" />
+                <Key word = "OF" />
+                <Key word = "OFFSETS" />
+                <Key word = "OR" />
+                <Key word = "OUTER" />
+                <Key word = "RESTRICT" />
+                <Key word = "RIGHT" />
+            </KeyWords>
+        	
+            <KeyWords name = "Query" bold="false" italic="false" color="Blue">
+                <Key word = "ALTER" />
+                <Key word = "AS" />
+                <Key word = "ASC" />
+                <Key word = "AUTHORIZATION" />
+                <Key word = "BACKUP" />
+                <Key word = "BEGIN" />
+                <Key word = "BREAK" />
+                <Key word = "BULK" />
+                <Key word = "BY" />
+                <Key word = "CASCADE" />
+                <Key word = "CASE" />
+                <Key word = "CHECK" />
+                <Key word = "CHECKPOINT" />
+                <Key word = "CLOSE" />
+                <Key word = "CLUSTERED" />
+                <Key word = "COLLATE" />
+                <Key word = "COLUMN" />
+                <Key word = "COMMIT" />
+                <Key word = "COMPUTE" />
+                <Key word = "CONSTRAINT" />
+                <Key word = "CONTAINSTABLE" />
+                <Key word = "CONTINUE" />
+                <Key word = "CREATE" />
+                <Key word = "CURRENT" />
+                <Key word = "CURSOR" />
+                <Key word = "DATABASE" />
+                <Key word = "DBCC" />
+                <Key word = "DEALLOCATE" />
+                <Key word = "DECLARE" />
+                <Key word = "DEFAULT" />
+                <Key word = "DELETE" />
+                <Key word = "DENY" />
+                <Key word = "DESC" />
+                <Key word = "DISK" />
+                <Key word = "DISTINCT" />
+                <Key word = "DISTRIBUTED" />
+                <Key word = "DOUBLE" />
+                <Key word = "DROP" />
+                <Key word = "DUMMY" />
+                <Key word = "DUMP" />
+                <Key word = "ELSE" />
+                <Key word = "END" />
+                <Key word = "ESCAPE" />
+                <Key word = "EXEC" />
+                <Key word = "EXECUTE" />
+                <Key word = "EXIT" />
+                <Key word = "FETCH" />
+                <Key word = "FOR" />
+                <Key word = "FOREIGN" />
+                <Key word = "FREETEXT" />
+                <Key word = "FREETEXTTABLE" />
+                <Key word = "FROM" />
+                <Key word = "FUNCTION" />
+                <Key word = "GOTO" />
+                <Key word = "GROUP" />
+                <Key word = "HAVING" />
+                <Key word = "IF" />
+                <Key word = "INDEX" />
+                <Key word = "INNER" />
+                <Key word = "INSERT" />
+                <Key word = "INTERSECT" />
+                <Key word = "INTO" />
+                <Key word = "KEY" />
+                <Key word = "NOCHECK" />
+                <Key word = "NONCLUSTERED" />
+                <Key word = "OFF" />
+                <Key word = "ON" />
+                <Key word = "OPEN" />
+                <Key word = "OPENDATASOURCE" />
+                <Key word = "OPENQUERY" />
+                <Key word = "OPENROWSET" />
+                <Key word = "OPENXML" />
+                <Key word = "OPTION" />
+                <Key word = "ORDER" />
+                <Key word = "OVER" />
+                <Key word = "PERCENT" />
+                <Key word = "PLAN" />
+                <Key word = "PRECISION" />
+                <Key word = "PRIMARY" />
+                <Key word = "PRINT" />
+                <Key word = "PROC" />
+                <Key word = "PROCEDURE" />
+                <Key word = "PUBLIC" />
+                <Key word = "RESTORE" />
+                <Key word = "RETURN" />
+                <Key word = "REVOKE" />
+                <Key word = "ROLLBACK" />
+                <Key word = "RULE" />
+                <Key word = "SCHEMA" />
+                <Key word = "SELECT" />
+                <Key word = "SESSION_USER" />
+                <Key word = "SET" />
+                <Key word = "SETUSER" />
+                <Key word = "SHUTDOWN" />
+                <Key word = "SOME" />
+                <Key word = "TABLE" />
+                <Key word = "THEN" />
+                <Key word = "TO" />
+                <Key word = "TOP" />
+                <Key word = "TRAN" />
+                <Key word = "TRANSACTION" />
+                <Key word = "TRIGGER" />
+                <Key word = "TRUNCATE" />
+                <Key word = "TSEQUAL" />
+                <Key word = "UNION" />
+                <Key word = "UNIQUE" />
+                <Key word = "UPDATE" />
+                <Key word = "USE" />
+                <Key word = "VALUES" />
+                <Key word = "VARYING" />
+                <Key word = "VIEW" />
+                <Key word = "WAITFOR" />
+                <Key word = "WHEN" />
+                <Key word = "WHERE" />
+                <Key word = "WHILE" />
+                <Key word = "WITH" />
+            </KeyWords>
+        </RuleSet>
+
+        <RuleSet name = "CommentMarkerSet" ignorecase = "false">
+            <Delimiters>&lt;&gt;~!@%^*()-+=|\#/{}[]:;"' ,   .?</Delimiters>
+        </RuleSet>
+    </RuleSets>
+</SyntaxDefinition>
