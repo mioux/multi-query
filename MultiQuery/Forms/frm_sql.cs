@@ -73,6 +73,12 @@ namespace MultiQuery.Forms
 			this.Close();
 		}
 		
+		/// <summary>
+		/// Annulation de la requête.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
 		void Btn_cancelClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;

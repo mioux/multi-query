@@ -52,13 +52,10 @@ namespace MultiQuery.Config
 			
 			if (srv is Server.MsSqlServer)
 			{
-				cbx_type.SelectedIndex = 0;
 				Server.MsSqlServer server = (Server.MsSqlServer)srv;
-				txt_username.Text = server.UserName;
-				txt_pw.Text = server.Password;
-				txt_defaultDatabase.Text = server.DefaultDatabase;
-				txt_server.Text = server.Dns;
-				chx_rememberMe.Checked = server.RememberMe;
+				
+				cbx_type.SelectedIndex = 0;
+				
 				if (server.UseTrusted == true)
 				{
 					cbx_authent.SelectedIndex = 0;
@@ -67,6 +64,11 @@ namespace MultiQuery.Config
 				{
 					cbx_authent.SelectedIndex = 1;
 				}
+				txt_username.Text = server.UserName;
+				txt_pw.Text = server.Password;
+				txt_defaultDatabase.Text = server.DefaultDatabase;
+				txt_server.Text = server.Dns;
+				chx_rememberMe.Checked = server.RememberMe;
 			}
 		}
 		
@@ -171,8 +173,7 @@ namespace MultiQuery.Config
 		
 		void Frm_newServerLoad(object sender, EventArgs e)
 		{
-			cbx_authent.SelectedIndex = 0;
-			cbx_type.SelectedIndex = 0;
+			
 		}
 		
 		/// <summary>

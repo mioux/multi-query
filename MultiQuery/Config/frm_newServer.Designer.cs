@@ -37,13 +37,15 @@ namespace MultiQuery.Config
 		private void InitializeComponent()
 		{
 			this.txt_server = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lbl_title = new System.Windows.Forms.Label();
 			this.cbx_type = new System.Windows.Forms.ComboBox();
 			this.cbx_authent = new System.Windows.Forms.ComboBox();
 			this.txt_username = new System.Windows.Forms.TextBox();
 			this.txt_pw = new System.Windows.Forms.TextBox();
 			this.chx_rememberMe = new System.Windows.Forms.CheckBox();
 			this.grp_login = new System.Windows.Forms.GroupBox();
+			this.lbl_defaultDb = new System.Windows.Forms.Label();
+			this.txt_defaultDatabase = new System.Windows.Forms.TextBox();
 			this.lbl_pw = new System.Windows.Forms.Label();
 			this.lbl_username = new System.Windows.Forms.Label();
 			this.lbl_authent = new System.Windows.Forms.Label();
@@ -58,8 +60,6 @@ namespace MultiQuery.Config
 			this.btn_annuler = new System.Windows.Forms.Button();
 			this.btn_test = new System.Windows.Forms.Button();
 			this.cld = new System.Windows.Forms.ColorDialog();
-			this.txt_defaultDatabase = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.grp_login.SuspendLayout();
 			this.grp_register.SuspendLayout();
 			this.SuspendLayout();
@@ -72,14 +72,14 @@ namespace MultiQuery.Config
 			this.txt_server.TabIndex = 2;
 			this.txt_server.Leave += new System.EventHandler(this.Txt_serverLeave);
 			// 
-			// label1
+			// lbl_title
 			// 
-			this.label1.Location = new System.Drawing.Point(12, 9);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(353, 18);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Ajouter un serveur";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lbl_title.Location = new System.Drawing.Point(12, 9);
+			this.lbl_title.Name = "lbl_title";
+			this.lbl_title.Size = new System.Drawing.Size(353, 18);
+			this.lbl_title.TabIndex = 0;
+			this.lbl_title.Text = "Ajouter un serveur";
+			this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// cbx_type
 			// 
@@ -135,7 +135,7 @@ namespace MultiQuery.Config
 			// 
 			// grp_login
 			// 
-			this.grp_login.Controls.Add(this.label2);
+			this.grp_login.Controls.Add(this.lbl_defaultDb);
 			this.grp_login.Controls.Add(this.txt_defaultDatabase);
 			this.grp_login.Controls.Add(this.lbl_pw);
 			this.grp_login.Controls.Add(this.lbl_username);
@@ -154,6 +154,21 @@ namespace MultiQuery.Config
 			this.grp_login.TabIndex = 8;
 			this.grp_login.TabStop = false;
 			this.grp_login.Text = "Login";
+			// 
+			// lbl_defaultDb
+			// 
+			this.lbl_defaultDb.Location = new System.Drawing.Point(6, 180);
+			this.lbl_defaultDb.Name = "lbl_defaultDb";
+			this.lbl_defaultDb.Size = new System.Drawing.Size(100, 17);
+			this.lbl_defaultDb.TabIndex = 13;
+			this.lbl_defaultDb.Text = "Base par défaut";
+			// 
+			// txt_defaultDatabase
+			// 
+			this.txt_defaultDatabase.Location = new System.Drawing.Point(125, 177);
+			this.txt_defaultDatabase.Name = "txt_defaultDatabase";
+			this.txt_defaultDatabase.Size = new System.Drawing.Size(222, 20);
+			this.txt_defaultDatabase.TabIndex = 7;
 			// 
 			// lbl_pw
 			// 
@@ -272,21 +287,6 @@ namespace MultiQuery.Config
 			this.btn_test.UseVisualStyleBackColor = true;
 			this.btn_test.Click += new System.EventHandler(this.Btn_testClick);
 			// 
-			// txt_defaultDatabase
-			// 
-			this.txt_defaultDatabase.Location = new System.Drawing.Point(125, 177);
-			this.txt_defaultDatabase.Name = "txt_defaultDatabase";
-			this.txt_defaultDatabase.Size = new System.Drawing.Size(222, 20);
-			this.txt_defaultDatabase.TabIndex = 7;
-			// 
-			// label2
-			// 
-			this.label2.Location = new System.Drawing.Point(6, 180);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(100, 17);
-			this.label2.TabIndex = 13;
-			this.label2.Text = "Base par défaut";
-			// 
 			// frm_newServer
 			// 
 			this.AcceptButton = this.btn_ok;
@@ -300,7 +300,7 @@ namespace MultiQuery.Config
 			this.Controls.Add(this.btn_ok);
 			this.Controls.Add(this.grp_register);
 			this.Controls.Add(this.grp_login);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lbl_title);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "frm_newServer";
 			this.Text = "Ajouter une serveur";
@@ -311,8 +311,9 @@ namespace MultiQuery.Config
 			this.grp_register.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Label lbl_defaultDb;
+		private System.Windows.Forms.Label lbl_title;
 		private System.Windows.Forms.TextBox txt_defaultDatabase;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ColorDialog cld;
 		private System.Windows.Forms.Button btn_test;
 		private System.Windows.Forms.Button btn_annuler;
@@ -334,6 +335,5 @@ namespace MultiQuery.Config
 		private System.Windows.Forms.Label lbl_type;
 		private System.Windows.Forms.GroupBox grp_register;
 		private System.Windows.Forms.GroupBox grp_login;
-		private System.Windows.Forms.Label label1;
 	}
 }

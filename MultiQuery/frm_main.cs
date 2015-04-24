@@ -118,13 +118,24 @@ namespace MultiQuery
 		/// <param name="e">Arguments d'appel.</param>
 		
 		void ExecuterSurLesServeursSelectionnesToolStripMenuItemClick(object sender, EventArgs e)
+		{			
+			ExecuteOnServers(clb_serverList.GetSelected());
+		}
+		
+		void ExecuteOnServers(Server.Server[] list)
 		{
+			if (list.Length == 0)
+			{
+				MessageBox.Show("Aucun serveur sélectionné", "Alerte", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+			
 			string sql = string.Empty;
 			
 			if (frmSql.ShowDialog() == DialogResult.OK)
 			{
 				tbc_result.TabPages.Clear();
-				foreach(Server.Server srv in clb_serverList.GetSelected())
+				foreach(Server.Server srv in list)
 				{
 					AddNewResult(srv, frmSql.Data);
 				}
@@ -139,16 +150,7 @@ namespace MultiQuery
 		
 		void ExecuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			string sql = string.Empty;
-			
-			if (frmSql.ShowDialog() == DialogResult.OK)
-			{
-				tbc_result.TabPages.Clear();
-				foreach(Server.Server srv in clb_serverList.GetAll())
-				{
-					AddNewResult(srv, frmSql.Data);
-				}
-			}
+			ExecuteOnServers(clb_serverList.GetAll());
 		}
 		
 		/// <summary>

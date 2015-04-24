@@ -45,6 +45,7 @@ namespace MultiQuery.Forms
 			// 
 			// btn_ok
 			// 
+			this.btn_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_ok.Location = new System.Drawing.Point(383, 379);
 			this.btn_ok.Name = "btn_ok";
 			this.btn_ok.Size = new System.Drawing.Size(75, 23);
@@ -55,6 +56,7 @@ namespace MultiQuery.Forms
 			// 
 			// btn_cancel
 			// 
+			this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btn_cancel.Location = new System.Drawing.Point(302, 379);
 			this.btn_cancel.Name = "btn_cancel";
@@ -66,6 +68,9 @@ namespace MultiQuery.Forms
 			// 
 			// pan_sql
 			// 
+			this.pan_sql.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+									| System.Windows.Forms.AnchorStyles.Left) 
+									| System.Windows.Forms.AnchorStyles.Right)));
 			this.pan_sql.Controls.Add(this.rtb_sql);
 			this.pan_sql.Location = new System.Drawing.Point(12, 12);
 			this.pan_sql.Name = "pan_sql";

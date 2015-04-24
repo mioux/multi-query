@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<!-- syntaxdefinition for C# 2000 by Mike Krueger -->
+<!-- syntaxdefinition for SQL 2000 by Mioux -->
 
 <SyntaxDefinition name = "sql" extensions = ".sql">
 
@@ -15,14 +15,21 @@
                 <Begin>/*</Begin>
                 <End>*/</End>
             </Span>
+        	
+        	<Span name = "Character" bold = "false" italic = "false" color = "Red" stopateol = "true">
+				<Begin>&apos;</Begin>
+				<End>&apos;</End>
+			</Span>
 
             <MarkPrevious bold = "true" italic = "false" color = "MidnightBlue">(</MarkPrevious>
+        	<MarkPrevious bold = "true" italic = "false" color = "MidnightBlue">[</MarkPrevious>
 
-            <KeyWords name = "Functions" bold="false" italic="false" color="Salmon">
+            <KeyWords name = "Functions" bold="false" italic="false" color="Fuchsia">
                 <Key word = "ADD" />
                 <Key word = "COALESCE" />
                 <Key word = "CONTAINS" />
                 <Key word = "CONVERT" />
+                <Key word = "GETDATE" />
                 <Key word = "IDENTITY" />
                 <Key word = "IDENTITYCOL" />
                 <Key word = "IDENTITY_INSERT" />
