@@ -82,7 +82,7 @@
     <Compile Include="Server\MsSqlServer.cs" />
     <Compile Include="Server\Server.cs" />
     <EmbeddedResource Include="Config\frm_MsSqlServer_ConnectionDialog.resx">
-      <DependentUpon>frm_MsSqlServer_ConnectionDialog.Designer.cs</DependentUpon>
+      <DependentUpon>frm_MsSqlServer_ConnectionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Config\frm_newServer.resx">
       <DependentUpon>frm_newServer.cs</DependentUpon>
