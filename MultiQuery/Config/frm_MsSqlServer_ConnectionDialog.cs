@@ -3,8 +3,6 @@
  * Utilisateur: SRUMEU
  * Date: 09/04/2015
  * Heure: 17:03
- * 
- * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
 using System.Drawing;

@@ -3,8 +3,6 @@
  * Utilisateur: SRUMEU
  * Date: 25/03/2015
  * Heure: 16:57
- * 
- * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
 using System.Collections.Generic;
@@ -47,6 +45,8 @@ namespace MultiQuery
 		    		XmlDocument xml = new XmlDocument();
 		    		xml.Load("ServerList.xml");
 		    		
+		    		UpdateServerList(xml);
+		    		
 		    		XmlNodeList servers = xml.SelectNodes("/servers/server");
 		    		foreach (XmlNode node in servers)
 		    		{
@@ -64,6 +64,42 @@ namespace MultiQuery
 		    		MessageBox.Show("Erreur au chargement du fichier de serveur.\nLe fichier sera écrasé lors de l'ajout ou de la suppression d'un serveur à la liste.\n\n" + exp.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		    	}
 		    }
+		}
+		
+		/// <summary>
+		/// Mise à jour du fichier Settings.
+		/// </summary>
+		/// <param name="xml"></param>
+		
+		private void UpdateServerList(XmlDocument xml)
+		{
+			if (xml.DocumentElement == null)
+				return;
+			
+			if (xml.DocumentElement.Attributes["version"] == null || 
+		     	 xml.DocumentElement.Attributes["version"].Value == "" || 
+		     	 Convert.ToInt32(xml.DocumentElement.Attributes["version"].Value) < 2)
+			{
+				if (xml.DocumentElement.Attributes["version"] == null)
+				{
+					XmlAttribute newAttribute = xml.CreateAttribute("version");
+					newAttribute.Value = "2";
+					
+					xml.DocumentElement.Attributes.Append(newAttribute);
+				}
+				else
+				{
+					xml.DocumentElement.Attributes["version"].Value = "2";
+				}
+				
+				XmlNodeList servers = xml.SelectNodes("/servers/server");
+	    		foreach (XmlNode node in servers)
+	    		{
+	    			node.InnerText = Cypher.Chiffre(Cypher.DechiffreLegacy(node.InnerText));
+	    		}
+	    		
+	    		xml.Save("ServerList.xml");
+			}
 		}
 		
 		/// <summary>

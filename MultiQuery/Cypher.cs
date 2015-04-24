@@ -5,9 +5,8 @@
  * Heure: 18:02
  *
  * Code honteusement pompé depuis http://www.devasp.net/net/articles/display/1354.html
+ * pour la partie "Legacy".
  * (originalement trouvé sur StackOverflow mais je retrouve plus le post correspondant)
- * 
- * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
 using System.IO;
@@ -33,6 +32,17 @@ namespace MultiQuery
 		
 		/// <summary>
 		/// Chiffre une chaîne de caractère et la convertit en Base64.
+		/// </summary>
+		/// <param name="inputString">Chaîne à chiffrer</param>
+		/// <returns><see cref="String"></see> en Base64 chiffrée.</returns>
+		public static string Chiffre(byte[] byteInput)
+		{
+			byte[] cyphered = ProtectedData.Protect(byteInput, null, DataProtectionScope.CurrentUser);
+			return Convert.ToBase64String(cyphered);
+		}
+		
+		/// <summary>
+		/// Ancienne méthide de déchifrement conservée pour version portable.
 		/// </summary>
 		/// <param name="inputString">Chaîne à chiffrer</param>
 		/// <returns><see cref="String"></see> en Base64 chiffrée.</returns>
@@ -71,6 +81,17 @@ namespace MultiQuery
 		/// <param name="inputString">Chaîne chiffrée.</param>
 		/// <returns><see cref="String">Chaîne</see> déchiffrée.</returns>
 		public static byte[] Dechiffre(string inputString)
+		{
+			byte[] cyphered = Convert.FromBase64String(inputString);
+			return ProtectedData.Unprotect(cyphered, null, DataProtectionScope.CurrentUser);
+		}
+		
+		/// <summary>
+		/// Ancienne méthide de déchifrement conservée pour mise à jour des fichiers de paramètres ou pour version portable.
+		/// </summary>
+		/// <param name="inputString"></param>
+		/// <returns></returns>
+		public static byte[] DechiffreLegacy(string inputString)
 		{
 			if (inputString == "")
 				return null;

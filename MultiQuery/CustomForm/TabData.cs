@@ -3,8 +3,6 @@
  * Utilisateur: SRUMEU
  * Date: 01/04/2015
  * Heure: 15:06
- * 
- * Pour changer ce modèle utiliser Outils | Options | Codage | Editer les en-têtes standards.
  */
 using System;
 using System.ComponentModel;
