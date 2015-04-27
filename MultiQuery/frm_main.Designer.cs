@@ -39,6 +39,9 @@ namespace MultiQuery
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
 			this.mnu_main = new System.Windows.Forms.MenuStrip();
 			this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exporterServerListxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importerServerListxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.serveurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +54,8 @@ namespace MultiQuery
 			this.clb_serverList = new MultiQuery.CustomForm.CheckListBox();
 			this.tbc_result = new System.Windows.Forms.TabControl();
 			this.bgw_executeQuery = new System.ComponentModel.BackgroundWorker();
+			this.sfd_export = new System.Windows.Forms.SaveFileDialog();
+			this.ofd_import = new System.Windows.Forms.OpenFileDialog();
 			this.mnu_main.SuspendLayout();
 			this.spc_main.Panel1.SuspendLayout();
 			this.spc_main.Panel2.SuspendLayout();
@@ -71,16 +76,40 @@ namespace MultiQuery
 			// fichierToolStripMenuItem
 			// 
 			this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.exporterServerListxmlToolStripMenuItem,
+									this.importerServerListxmlToolStripMenuItem,
+									this.toolStripSeparator2,
 									this.quitterToolStripMenuItem});
 			this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
 			this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
 			this.fichierToolStripMenuItem.Text = "Fichier";
 			// 
+			// exporterServerListxmlToolStripMenuItem
+			// 
+			this.exporterServerListxmlToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exporterServerListxmlToolStripMenuItem.Image")));
+			this.exporterServerListxmlToolStripMenuItem.Name = "exporterServerListxmlToolStripMenuItem";
+			this.exporterServerListxmlToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.exporterServerListxmlToolStripMenuItem.Text = "Exporter ServerList.xml";
+			this.exporterServerListxmlToolStripMenuItem.Click += new System.EventHandler(this.ExporterServerListxmlToolStripMenuItemClick);
+			// 
+			// importerServerListxmlToolStripMenuItem
+			// 
+			this.importerServerListxmlToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importerServerListxmlToolStripMenuItem.Image")));
+			this.importerServerListxmlToolStripMenuItem.Name = "importerServerListxmlToolStripMenuItem";
+			this.importerServerListxmlToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.importerServerListxmlToolStripMenuItem.Text = "Importer ServerList.xml";
+			this.importerServerListxmlToolStripMenuItem.Click += new System.EventHandler(this.ImporterServerListxmlToolStripMenuItemClick);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(192, 6);
+			// 
 			// quitterToolStripMenuItem
 			// 
 			this.quitterToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quitterToolStripMenuItem.Image")));
 			this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
 			this.quitterToolStripMenuItem.Text = "&Quitter";
 			this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItemClick);
 			// 
@@ -155,7 +184,7 @@ namespace MultiQuery
 			// spc_main.Panel2
 			// 
 			this.spc_main.Panel2.Controls.Add(this.tbc_result);
-			this.spc_main.Size = new System.Drawing.Size(632, 431);
+			this.spc_main.Size = new System.Drawing.Size(632, 421);
 			this.spc_main.SplitterDistance = 210;
 			this.spc_main.TabIndex = 1;
 			// 
@@ -164,7 +193,7 @@ namespace MultiQuery
 			this.clb_serverList.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.clb_serverList.Location = new System.Drawing.Point(0, 0);
 			this.clb_serverList.Name = "clb_serverList";
-			this.clb_serverList.Size = new System.Drawing.Size(210, 431);
+			this.clb_serverList.Size = new System.Drawing.Size(210, 421);
 			this.clb_serverList.TabIndex = 0;
 			// 
 			// tbc_result
@@ -173,14 +202,14 @@ namespace MultiQuery
 			this.tbc_result.Location = new System.Drawing.Point(0, 0);
 			this.tbc_result.Name = "tbc_result";
 			this.tbc_result.SelectedIndex = 0;
-			this.tbc_result.Size = new System.Drawing.Size(418, 431);
+			this.tbc_result.Size = new System.Drawing.Size(418, 421);
 			this.tbc_result.TabIndex = 0;
 			// 
 			// frm_main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(632, 455);
+			this.ClientSize = new System.Drawing.Size(632, 445);
 			this.Controls.Add(this.spc_main);
 			this.Controls.Add(this.mnu_main);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -195,6 +224,11 @@ namespace MultiQuery
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.OpenFileDialog ofd_import;
+		private System.Windows.Forms.SaveFileDialog sfd_export;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem importerServerListxmlToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exporterServerListxmlToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editerLesServeursToolStripMenuItem;
 		private MultiQuery.CustomForm.CheckListBox clb_serverList;
 		private System.ComponentModel.BackgroundWorker bgw_executeQuery;

@@ -105,6 +105,8 @@
     </None>
     <None Include="icon.ico" />
     <None Include="ICSharpCode.TextEditor.dll" />
+    <None Include="load.png" />
+    <None Include="save.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config" />
