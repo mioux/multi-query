@@ -46,7 +46,7 @@ namespace MultiQuery
 		/// </summary>
 		/// <param name="inputString">Chaîne à chiffrer</param>
 		/// <returns><see cref="String"></see> en Base64 chiffrée.</returns>
-		public static string Chiffre(byte[] byteInput)
+		public static string ChiffreLegacy(byte[] byteInput)
 		{
 			if (byteInput.Length == 0)
 				return "";
