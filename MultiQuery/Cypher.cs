@@ -99,18 +99,18 @@ namespace MultiQuery
 			MemoryStream memStream = null;
 			try 
 			{
-					byte[] key = { };
-					byte[] IV = {  };
-					key = Encoding.UTF8.GetBytes(encryptKey);
-					IV = Encoding.UTF8.GetBytes(IV_val);
-					byte[] byteInput = new byte[inputString.Length];
-					byteInput = Convert.FromBase64String(inputString);
-					DESCryptoServiceProvider provider = new DESCryptoServiceProvider();
-					memStream = new MemoryStream();
-					ICryptoTransform transform = provider.CreateDecryptor(key, IV);
-					CryptoStream cryptoStream = new CryptoStream(memStream, transform, CryptoStreamMode.Write);
-					cryptoStream.Write(byteInput, 0, byteInput.Length);
-					cryptoStream.FlushFinalBlock();
+				byte[] key = { };
+				byte[] IV = { };
+				key = Encoding.UTF8.GetBytes(encryptKey);
+				IV = Encoding.UTF8.GetBytes(IV_val);
+				byte[] byteInput = new byte[inputString.Length];
+				byteInput = Convert.FromBase64String(inputString);
+				DESCryptoServiceProvider provider = new DESCryptoServiceProvider();
+				memStream = new MemoryStream();
+				ICryptoTransform transform = provider.CreateDecryptor(key, IV);
+				CryptoStream cryptoStream = new CryptoStream(memStream, transform, CryptoStreamMode.Write);
+				cryptoStream.Write(byteInput, 0, byteInput.Length);
+				cryptoStream.FlushFinalBlock();
 					
 				return memStream.ToArray();
 			}
