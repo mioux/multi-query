@@ -53,6 +53,8 @@ namespace MultiQuery
 			this.spc_main = new System.Windows.Forms.SplitContainer();
 			this.clb_serverList = new MultiQuery.CustomForm.CheckListBox();
 			this.tbc_result = new System.Windows.Forms.TabControl();
+			this.tbp_request = new System.Windows.Forms.TabPage();
+			this.tec_request = new ICSharpCode.TextEditor.TextEditorControl();
 			this.bgw_executeQuery = new System.ComponentModel.BackgroundWorker();
 			this.sfd_export = new System.Windows.Forms.SaveFileDialog();
 			this.ofd_import = new System.Windows.Forms.OpenFileDialog();
@@ -60,6 +62,8 @@ namespace MultiQuery
 			this.spc_main.Panel1.SuspendLayout();
 			this.spc_main.Panel2.SuspendLayout();
 			this.spc_main.SuspendLayout();
+			this.tbc_result.SuspendLayout();
+			this.tbp_request.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mnu_main
@@ -67,11 +71,8 @@ namespace MultiQuery
 			this.mnu_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.fichierToolStripMenuItem,
 									this.serveurToolStripMenuItem});
-			this.mnu_main.Location = new System.Drawing.Point(0, 0);
+			resources.ApplyResources(this.mnu_main, "mnu_main");
 			this.mnu_main.Name = "mnu_main";
-			this.mnu_main.Size = new System.Drawing.Size(632, 24);
-			this.mnu_main.TabIndex = 0;
-			this.mnu_main.Text = "menuStrip1";
 			// 
 			// fichierToolStripMenuItem
 			// 
@@ -81,36 +82,29 @@ namespace MultiQuery
 									this.toolStripSeparator2,
 									this.quitterToolStripMenuItem});
 			this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-			this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-			this.fichierToolStripMenuItem.Text = "Fichier";
+			resources.ApplyResources(this.fichierToolStripMenuItem, "fichierToolStripMenuItem");
 			// 
 			// exporterServerListxmlToolStripMenuItem
 			// 
-			this.exporterServerListxmlToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exporterServerListxmlToolStripMenuItem.Image")));
+			resources.ApplyResources(this.exporterServerListxmlToolStripMenuItem, "exporterServerListxmlToolStripMenuItem");
 			this.exporterServerListxmlToolStripMenuItem.Name = "exporterServerListxmlToolStripMenuItem";
-			this.exporterServerListxmlToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-			this.exporterServerListxmlToolStripMenuItem.Text = "Exporter ServerList.xml";
 			this.exporterServerListxmlToolStripMenuItem.Click += new System.EventHandler(this.ExporterServerListxmlToolStripMenuItemClick);
 			// 
 			// importerServerListxmlToolStripMenuItem
 			// 
-			this.importerServerListxmlToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importerServerListxmlToolStripMenuItem.Image")));
+			resources.ApplyResources(this.importerServerListxmlToolStripMenuItem, "importerServerListxmlToolStripMenuItem");
 			this.importerServerListxmlToolStripMenuItem.Name = "importerServerListxmlToolStripMenuItem";
-			this.importerServerListxmlToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-			this.importerServerListxmlToolStripMenuItem.Text = "Importer ServerList.xml";
 			this.importerServerListxmlToolStripMenuItem.Click += new System.EventHandler(this.ImporterServerListxmlToolStripMenuItemClick);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(192, 6);
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			// 
 			// quitterToolStripMenuItem
 			// 
-			this.quitterToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quitterToolStripMenuItem.Image")));
+			resources.ApplyResources(this.quitterToolStripMenuItem, "quitterToolStripMenuItem");
 			this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-			this.quitterToolStripMenuItem.Text = "&Quitter";
 			this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItemClick);
 			// 
 			// serveurToolStripMenuItem
@@ -123,58 +117,46 @@ namespace MultiQuery
 									this.exécuterSurLesServeursSélectionnésToolStripMenuItem,
 									this.exécuterSurTousLesServeursToolStripMenuItem});
 			this.serveurToolStripMenuItem.Name = "serveurToolStripMenuItem";
-			this.serveurToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-			this.serveurToolStripMenuItem.Text = "Serveur";
+			resources.ApplyResources(this.serveurToolStripMenuItem, "serveurToolStripMenuItem");
 			// 
 			// ajouterToolStripMenuItem
 			// 
-			this.ajouterToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ajouterToolStripMenuItem.Image")));
+			resources.ApplyResources(this.ajouterToolStripMenuItem, "ajouterToolStripMenuItem");
 			this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-			this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
-			this.ajouterToolStripMenuItem.Text = "&Ajouter";
 			this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItemClick);
 			// 
 			// supprimerToolStripMenuItem
 			// 
-			this.supprimerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("supprimerToolStripMenuItem.Image")));
+			resources.ApplyResources(this.supprimerToolStripMenuItem, "supprimerToolStripMenuItem");
 			this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
-			this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
-			this.supprimerToolStripMenuItem.Text = "&Supprimer";
 			this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.SupprimerToolStripMenuItemClick);
 			// 
 			// editerLesServeursToolStripMenuItem
 			// 
-			this.editerLesServeursToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editerLesServeursToolStripMenuItem.Image")));
+			resources.ApplyResources(this.editerLesServeursToolStripMenuItem, "editerLesServeursToolStripMenuItem");
 			this.editerLesServeursToolStripMenuItem.Name = "editerLesServeursToolStripMenuItem";
-			this.editerLesServeursToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
-			this.editerLesServeursToolStripMenuItem.Text = "É&diter le serveur";
 			this.editerLesServeursToolStripMenuItem.Click += new System.EventHandler(this.EditerLeServeurToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(265, 6);
+			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			// 
 			// exécuterSurLesServeursSélectionnésToolStripMenuItem
 			// 
-			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exécuterSurLesServeursSélectionnésToolStripMenuItem.Image")));
+			resources.ApplyResources(this.exécuterSurLesServeursSélectionnésToolStripMenuItem, "exécuterSurLesServeursSélectionnésToolStripMenuItem");
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Name = "exécuterSurLesServeursSélectionnésToolStripMenuItem";
-			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
-			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Text = "&Exécuter sur les serveurs sélectionnés";
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurLesServeursSelectionnesToolStripMenuItemClick);
 			// 
 			// exécuterSurTousLesServeursToolStripMenuItem
 			// 
-			this.exécuterSurTousLesServeursToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exécuterSurTousLesServeursToolStripMenuItem.Image")));
+			resources.ApplyResources(this.exécuterSurTousLesServeursToolStripMenuItem, "exécuterSurTousLesServeursToolStripMenuItem");
 			this.exécuterSurTousLesServeursToolStripMenuItem.Name = "exécuterSurTousLesServeursToolStripMenuItem";
-			this.exécuterSurTousLesServeursToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
-			this.exécuterSurTousLesServeursToolStripMenuItem.Text = "E&xécuter sur tous les serveurs";
 			this.exécuterSurTousLesServeursToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurTousLesServeursToolStripMenuItemClick);
 			// 
 			// spc_main
 			// 
-			this.spc_main.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.spc_main.Location = new System.Drawing.Point(0, 24);
+			resources.ApplyResources(this.spc_main, "spc_main");
 			this.spc_main.Name = "spc_main";
 			// 
 			// spc_main.Panel1
@@ -184,46 +166,52 @@ namespace MultiQuery
 			// spc_main.Panel2
 			// 
 			this.spc_main.Panel2.Controls.Add(this.tbc_result);
-			this.spc_main.Size = new System.Drawing.Size(632, 421);
-			this.spc_main.SplitterDistance = 210;
-			this.spc_main.TabIndex = 1;
 			// 
 			// clb_serverList
 			// 
-			this.clb_serverList.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.clb_serverList.Location = new System.Drawing.Point(0, 0);
+			resources.ApplyResources(this.clb_serverList, "clb_serverList");
 			this.clb_serverList.Name = "clb_serverList";
-			this.clb_serverList.Size = new System.Drawing.Size(210, 421);
-			this.clb_serverList.TabIndex = 0;
 			// 
 			// tbc_result
 			// 
-			this.tbc_result.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tbc_result.Location = new System.Drawing.Point(0, 0);
+			this.tbc_result.Controls.Add(this.tbp_request);
+			resources.ApplyResources(this.tbc_result, "tbc_result");
 			this.tbc_result.Name = "tbc_result";
 			this.tbc_result.SelectedIndex = 0;
-			this.tbc_result.Size = new System.Drawing.Size(418, 421);
-			this.tbc_result.TabIndex = 0;
+			// 
+			// tbp_request
+			// 
+			this.tbp_request.Controls.Add(this.tec_request);
+			resources.ApplyResources(this.tbp_request, "tbp_request");
+			this.tbp_request.Name = "tbp_request";
+			this.tbp_request.UseVisualStyleBackColor = true;
+			// 
+			// tec_request
+			// 
+			resources.ApplyResources(this.tec_request, "tec_request");
+			this.tec_request.IsReadOnly = false;
+			this.tec_request.Name = "tec_request";
 			// 
 			// frm_main
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(632, 445);
 			this.Controls.Add(this.spc_main);
 			this.Controls.Add(this.mnu_main);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.mnu_main;
 			this.Name = "frm_main";
-			this.Text = "multi-query";
 			this.mnu_main.ResumeLayout(false);
 			this.mnu_main.PerformLayout();
 			this.spc_main.Panel1.ResumeLayout(false);
 			this.spc_main.Panel2.ResumeLayout(false);
 			this.spc_main.ResumeLayout(false);
+			this.tbc_result.ResumeLayout(false);
+			this.tbp_request.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		public ICSharpCode.TextEditor.TextEditorControl tec_request;
+		private System.Windows.Forms.TabPage tbp_request;
 		private System.Windows.Forms.OpenFileDialog ofd_import;
 		private System.Windows.Forms.SaveFileDialog sfd_export;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

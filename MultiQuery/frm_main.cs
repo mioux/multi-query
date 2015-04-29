@@ -13,6 +13,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
 
+using ICSharpCode.TextEditor.Document;
 using MultiQuery.Config;
 using MultiQuery.CustomForm;
 
@@ -23,11 +24,6 @@ namespace MultiQuery
 	/// </summary>
 	public partial class frm_main : Form
 	{
-		/// <summary>
-		/// Requête.
-		/// </summary>
-		public Forms.frm_sql frmSql = new MultiQuery.Forms.frm_sql();
-		
 		/// <summary>
 		/// Constructeur.
 		/// </summary>
@@ -42,6 +38,27 @@ namespace MultiQuery
 		    {
 				ImportServers(false, "ServerList.xml");
 		    }
+			
+			if (File.Exists("last.sql"))
+			{
+				try
+				{
+					tec_request.Text = File.ReadAllText("last.sql");
+				}
+				catch (Exception exp)
+				{
+					MessageBox.Show("Erreur lors de la lecture de la dernière requête utilisée.\n" + exp.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			
+			string dir = @".\hl\"; // Insert the path to your xshd-files.
+			FileSyntaxModeProvider fsmProvider; // Provider
+			if (Directory.Exists(dir))
+			{
+			    fsmProvider = new FileSyntaxModeProvider(dir); // Create new provider with the highlighting directory.
+			    HighlightingManager.Manager.AddSyntaxModeFileProvider(fsmProvider); // Attach to the text editor.
+			    tec_request.SetHighlighting("sql"); // Activate the highlighting, use the name from the SyntaxDefinition node.
+			}
 		}
 		
 		/// <summary>
@@ -136,6 +153,11 @@ namespace MultiQuery
 			ExecuteOnServers(clb_serverList.GetSelected());
 		}
 		
+		/// <summary>
+		/// Exécuter une requête sur les serveurs listés.
+		/// </summary>
+		/// <param name="list">Liste des serveurs.</param>
+		
 		void ExecuteOnServers(Server.Server[] list)
 		{
 			if (list.Length == 0)
@@ -145,14 +167,13 @@ namespace MultiQuery
 			}
 			
 			string sql = string.Empty;
+
+			ClearPages();
+			File.WriteAllText("last.sql", tec_request.Text);
 			
-			if (frmSql.ShowDialog() == DialogResult.OK)
+			foreach(Server.Server srv in list)
 			{
-				tbc_result.TabPages.Clear();
-				foreach(Server.Server srv in list)
-				{
-					AddNewResult(srv, frmSql.Data);
-				}
+				AddNewResult(srv, tec_request.Text);
 			}
 		}
 		
@@ -324,7 +345,10 @@ namespace MultiQuery
 		
 		public void ClearPages()
 		{
-			tbc_result.TabPages.Clear();
+			for (int i = tbc_result.TabPages.Count - 1; i > 0; --i)
+			{
+				tbc_result.TabPages.RemoveAt(i);
+			}
 		}
 		
 		/// <summary>

@@ -40,9 +40,9 @@ namespace MultiQuery.CustomForm
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckListBox));
 			this.lbx_main = new System.Windows.Forms.ListBox();
 			this.ctx_menuEditDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.executerSurCeServeurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.executerSurCeServeurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ctx_menuEditDelete.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -67,6 +67,14 @@ namespace MultiQuery.CustomForm
 			this.ctx_menuEditDelete.Name = "contextMenuStrip1";
 			this.ctx_menuEditDelete.Size = new System.Drawing.Size(194, 92);
 			// 
+			// executerSurCeServeurToolStripMenuItem
+			// 
+			this.executerSurCeServeurToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("executerSurCeServeurToolStripMenuItem.Image")));
+			this.executerSurCeServeurToolStripMenuItem.Name = "executerSurCeServeurToolStripMenuItem";
+			this.executerSurCeServeurToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.executerSurCeServeurToolStripMenuItem.Text = "Exécuter sur ce serveur";
+			this.executerSurCeServeurToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurCeServeurToolStripMenuItemClick);
+			// 
 			// editerToolStripMenuItem
 			// 
 			this.editerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editerToolStripMenuItem.Image")));
@@ -82,14 +90,6 @@ namespace MultiQuery.CustomForm
 			this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
 			this.supprimerToolStripMenuItem.Text = "Supprimer";
 			this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.SupprimerToolStripMenuItemClick);
-			// 
-			// exécuterSurCeServeurToolStripMenuItem
-			// 
-			this.executerSurCeServeurToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exécuterSurCeServeurToolStripMenuItem.Image")));
-			this.executerSurCeServeurToolStripMenuItem.Name = "exécuterSurCeServeurToolStripMenuItem";
-			this.executerSurCeServeurToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-			this.executerSurCeServeurToolStripMenuItem.Text = "Exécuter sur ce serveur";
-			this.executerSurCeServeurToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurCeServeurToolStripMenuItemClick);
 			// 
 			// CheckListBox
 			// 
