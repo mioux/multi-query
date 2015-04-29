@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -211,56 +212,21 @@ namespace MultiQuery
 		/// <param name="SQL">Serveur d'exécution.</param>
 		
 		public void AddNewResult(Server.Server srv, string SQL)
-		{
-			bool doSave = false;
-			
+		{			
 			TabPage newTab = new TabPage();
-			newTab.Text = srv.ServerName;
+			newTab.Text = srv.ServerName + " ...";
 			
 			tbc_result.TabPages.Add(newTab);
 			
-			try
-			{
-				DataSet data = srv.Execute(SQL);
-				doSave = doSave | srv.DoSaveAfterExecute;
-				srv.DoSaveAfterExecute = false;
-				
-				if (data.Tables.Count > 0)
-				{
-					TabControl tbc = new TabControl();
-					tbc.Dock = DockStyle.Fill;
-					newTab.Controls.Add(tbc);
-					
-					for (int i = 0; i < data.Tables.Count; ++i)
-					{
-						TabData tbd = new TabData();
-						tbd.DataSource = data.Tables[i];
-						tbd.Text = string.Format("Résultat {0}", i + 1);
-						tbc.TabPages.Add(tbd);
-					}
-				}
-				else
-				{
-					Label lbl = new Label();
-					lbl.Text = "Pas de résultats";
-					lbl.Location = new Point(5, 5);
-					newTab.Controls.Add(lbl);
-				}
-			}
-			catch (Exception exp)
-			{
-				TextBox txt = new TextBox();
-				txt.Multiline = true;
-				txt.Dock = DockStyle.Fill;
-				txt.Text = exp.Message + "\n\n" + exp.StackTrace;
-				
-				newTab.Controls.Add(txt);
-			}
+			BackgroundWorker bgw = new BackgroundWorker();
+			bgw.DoWork += new DoWorkEventHandler(Bgw_executeDoWork);
+			bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bgw_executeRunWorkerCompleted);
 			
-			if (doSave == true)
-			{
-				SaveServerList();
-			}
+			QueryAndResultSet param = new QueryAndResultSet(srv, SQL, newTab);
+			bgw.RunWorkerAsync(param);
+			
+			SaveServerList();
+
 		}
 		
 		/// <summary>
@@ -428,6 +394,79 @@ namespace MultiQuery
 	    	{
 	    		MessageBox.Show("Erreur au chargement du fichier de serveur.\nLe fichier sera écrasé lors de l'ajout ou de la suppression d'un serveur à la liste.\n\n" + exp.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 	    	}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void Bgw_executeDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+		{
+			QueryAndResultSet qrs = (QueryAndResultSet)e.Argument;
+			
+			e.Result = qrs;
+			
+			try
+			{
+				DataSet data = qrs.ExecuteOn.Execute(qrs.SQL);
+				
+				qrs.Result = data;
+			}
+			catch (Exception exp)
+			{
+				qrs.Err = exp.Message + "\n\n" + exp.StackTrace;
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void Bgw_executeRunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+		{
+			QueryAndResultSet qrs = (QueryAndResultSet)e.Result;
+			
+			qrs.Tab.Text = qrs.Tab.Text.Substring(0, qrs.Tab.Text.Length - 4);
+			
+			if (qrs.Result != null)
+			{
+				if (qrs.Result.Tables.Count > 0)
+				{
+					TabControl tbc = new TabControl();
+					tbc.Dock = DockStyle.Fill;
+					qrs.Tab.Controls.Add(tbc);
+					
+					for (int i = 0; i < qrs.Result.Tables.Count; ++i)
+					{
+						TabData tbd = new TabData();
+						tbd.DataSource = qrs.Result.Tables[i];
+						tbd.Text = string.Format("Résultat {0}", i + 1);
+						tbc.TabPages.Add(tbd);
+					}
+				}
+				else
+				{
+					Label lbl = new Label();
+					lbl.Text = "Pas de résultats";
+					lbl.Location = new Point(5, 5);
+					qrs.Tab.Controls.Add(lbl);
+				}
+			}
+			else
+			{
+				TextBox txt = new TextBox();
+				txt.Multiline = true;
+				txt.Dock = DockStyle.Fill;
+				txt.Text = qrs.Err;
+				
+				qrs.Tab.Controls.Add(txt);
+			}
+			
+			lock(this) { SaveServerList(); }
 		}
 	}
 }

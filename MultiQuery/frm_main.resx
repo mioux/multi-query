@@ -124,7 +124,7 @@
   <data name="exporterServerListxmlToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsOAAALDgFAvuFBAAAZA0lEQVR4Xu2dd3QUV5bG/ffM
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsMAAALDAE/QCLIAAAZA0lEQVR4Xu2dd3QUV5bG/ffM
         7JmdmQWUUSvnnHPOIBGFbXIWGRsH8GBjDEgkSQghgcDYg+Ms9ll2xhEBQmSwwRgcCMaITCsYbOORZ/Z4
         7n73SS23Pd3wqrrosaB8zneQ67yurvvdX92qev3qvQce0P/THdAd0B3QHdAd0B3QHZB0wNfX193b27vF
         x8eHzBUSEsL/7ye5G72ZQgciIiKegchcUVFRFBMTQ/Hx8ZSYmEgpKSmUnp5OmZmZlJ2dTXl5eZSfn/93
@@ -243,7 +243,7 @@
   <data name="importerServerListxmlToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw0AAAsNAe0HwCwAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjVJivzg
+        YQUAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjVJivzg
         AAAZKUlEQVR4Xu2dB1QV17rHveut99669+a9XGNE2gEOnUPn0EGqdASs2LCABcReYqJXYwVsoIii2BJj
         yo1mxazE2GLBFnuMRqNGI3YPxe7FJC9+7/sGBkc957BnOIDIuNZ/ieNmZr7v++1v79mzZ+82beQ/sgdk
         D8gekD0ge0D2gOwBRg84ODhY2dnZldnb24NQbm5u9G9HxtPIxUR6wMvL630UCOXt7Q2+vr4QEBAAQUFB
@@ -2161,7 +2161,7 @@
     <value>clb_serverList</value>
   </data>
   <data name="&gt;&gt;clb_serverList.Type" xml:space="preserve">
-    <value>MultiQuery.CustomForm.CheckListBox, MultiQuery, Version=0.4.5596.25021, Culture=neutral, PublicKeyToken=null</value>
+    <value>MultiQuery.CustomForm.CheckListBox, MultiQuery, Version=0.4.5597.18405, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;clb_serverList.Parent" xml:space="preserve">
     <value>spc_main.Panel1</value>
@@ -2194,7 +2194,7 @@
     <value>0</value>
   </data>
   <data name="tec_request.Text" xml:space="preserve">
-    <value>tec_request</value>
+    <value>SELECT 1</value>
   </data>
   <data name="&gt;&gt;tec_request.Name" xml:space="preserve">
     <value>tec_request</value>
