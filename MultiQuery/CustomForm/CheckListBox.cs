@@ -277,9 +277,7 @@ namespace MultiQuery.CustomForm
 		{
 			Server.Server server = (Server.Server)SourceTable.Rows[ClickedServer]["Server"];
 			frm_main parent = (frm_main)this.ParentForm;
-			
-			parent.ClearPages();
-			parent.AddNewResult(server, parent.tec_request.Text);
+			parent.ExecuteOnServers(new MultiQuery.Server.Server[] { server });
 		}
 	}
 }

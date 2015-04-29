@@ -158,7 +158,7 @@ namespace MultiQuery
 		/// </summary>
 		/// <param name="list">Liste des serveurs.</param>
 		
-		void ExecuteOnServers(Server.Server[] list)
+		public void ExecuteOnServers(Server.Server[] list)
 		{
 			if (list.Length == 0)
 			{
@@ -174,6 +174,11 @@ namespace MultiQuery
 			foreach(Server.Server srv in list)
 			{
 				AddNewResult(srv, tec_request.Text);
+			}
+			
+			if (tbc_result.TabPages.Count > 1)
+			{
+				tbc_result.SelectedIndex = 1;
 			}
 		}
 		
