@@ -76,7 +76,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Pan_colorClick(object sender, EventArgs e)
+		private void Pan_colorClick(object sender, EventArgs e)
 		{
 			if (cld.ShowDialog() == DialogResult.OK)
 			{
@@ -90,7 +90,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Btn_okClick(object sender, EventArgs e)
+		private void Btn_okClick(object sender, EventArgs e)
 		{
 			if (txt_server.Text == string.Empty)
 			{
@@ -138,7 +138,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Btn_annulerClick(object sender, EventArgs e)
+		private void Btn_annulerClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
@@ -150,7 +150,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Btn_testClick(object sender, EventArgs e)
+		private void Btn_testClick(object sender, EventArgs e)
 		{
 			try
 			{
@@ -164,23 +164,12 @@ namespace MultiQuery.Config
 		}
 		
 		/// <summary>
-		/// Chargement de la fenêtre.
-		/// </summary>
-		/// <param name="sender">Objet appelant.</param>
-		/// <param name="e">Arguments d'appel.</param>
-		
-		void Frm_newServerLoad(object sender, EventArgs e)
-		{
-			
-		}
-		
-		/// <summary>
 		/// Changement du type de connexion.
 		/// </summary>
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Cbx_authentSelectedIndexChanged(object sender, EventArgs e)
+		private void Cbx_authentSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (cbx_authent.SelectedIndex == 0)
 			{
@@ -207,7 +196,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Txt_serverLeave(object sender, EventArgs e)
+		private void Txt_serverLeave(object sender, EventArgs e)
 		{
 			if (txt_serverName.Text == string.Empty)
 				txt_serverName.Text = txt_server.Text;

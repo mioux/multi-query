@@ -38,7 +38,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Cbx_authentSelectedIndexChanged(object sender, EventArgs e)
+		private void Cbx_authentSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (cbx_authent.SelectedIndex == 0)
 			{
@@ -65,7 +65,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Btn_okClick(object sender, EventArgs e)
+		private void Btn_okClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;
 			this.Close();
@@ -77,7 +77,7 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Btn_annulerClick(object sender, EventArgs e)
+		private void Btn_annulerClick(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();

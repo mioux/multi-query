@@ -304,7 +304,6 @@ namespace MultiQuery.Config
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "frm_newServer";
 			this.Text = "Ajouter une serveur";
-			this.Load += new System.EventHandler(this.Frm_newServerLoad);
 			this.grp_login.ResumeLayout(false);
 			this.grp_login.PerformLayout();
 			this.grp_register.ResumeLayout(false);

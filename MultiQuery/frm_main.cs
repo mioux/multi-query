@@ -52,13 +52,13 @@ namespace MultiQuery
 				}
 			}
 			
-			string dir = @".\hl\"; // Insert the path to your xshd-files.
-			FileSyntaxModeProvider fsmProvider; // Provider
+			string dir = @".\hl\";
+			FileSyntaxModeProvider fsmProvider;
 			if (Directory.Exists(dir))
 			{
-			    fsmProvider = new FileSyntaxModeProvider(dir); // Create new provider with the highlighting directory.
-			    HighlightingManager.Manager.AddSyntaxModeFileProvider(fsmProvider); // Attach to the text editor.
-			    tec_request.SetHighlighting("sql"); // Activate the highlighting, use the name from the SyntaxDefinition node.
+			    fsmProvider = new FileSyntaxModeProvider(dir);
+			    HighlightingManager.Manager.AddSyntaxModeFileProvider(fsmProvider);
+			    tec_request.SetHighlighting("sql");
 			}
 		}
 		
@@ -103,7 +103,7 @@ namespace MultiQuery
 		/// </summary>
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
-		void AjouterToolStripMenuItemClick(object sender, EventArgs e)
+		private void AjouterToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			frm_newServer newServer = new frm_newServer();
 			
@@ -120,7 +120,7 @@ namespace MultiQuery
 		/// </summary>
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
-		void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
+		private void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			List<int> liste = new List<int>();
 			
@@ -149,7 +149,7 @@ namespace MultiQuery
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void ExecuterSurLesServeursSelectionnesToolStripMenuItemClick(object sender, EventArgs e)
+		private void ExecuterSurLesServeursSelectionnesToolStripMenuItemClick(object sender, EventArgs e)
 		{			
 			ExecuteOnServers(clb_serverList.GetSelected());
 		}
@@ -189,7 +189,7 @@ namespace MultiQuery
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void ExecuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
+		private void ExecuterSurTousLesServeursToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			ExecuteOnServers(clb_serverList.GetAll());
 		}
@@ -200,7 +200,7 @@ namespace MultiQuery
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void QuitterToolStripMenuItemClick(object sender, EventArgs e)
+		private void QuitterToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			Environment.Exit(0);
 		}
@@ -215,6 +215,8 @@ namespace MultiQuery
 		{			
 			TabPage newTab = new TabPage();
 			newTab.Text = srv.ServerName + " ...";
+			
+			newTab.ForeColor = srv.ServerColor;
 			
 			tbc_result.TabPages.Add(newTab);
 			
@@ -292,7 +294,7 @@ namespace MultiQuery
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void EditerLeServeurToolStripMenuItemClick(object sender, EventArgs e)
+		private void EditerLeServeurToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (clb_serverList.SelectedIndices.Count != 1)
 			{
@@ -328,7 +330,7 @@ namespace MultiQuery
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void ExporterServerListxmlToolStripMenuItemClick(object sender, EventArgs e)
+		private void ExporterServerListxmlToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (sfd_export.ShowDialog() == DialogResult.OK)
 			{
@@ -342,7 +344,7 @@ namespace MultiQuery
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void ImporterServerListxmlToolStripMenuItemClick(object sender, EventArgs e)
+		private void ImporterServerListxmlToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (ofd_import.ShowDialog() == DialogResult.OK)
 			{
@@ -357,7 +359,7 @@ namespace MultiQuery
 		/// <param name="useLegacy">Utilisation du chiffrement legacy.</param>
 		/// <param name="fileName">Nom du fichier à lire.</param>
 		
-		void ImportServers(bool useLegacy, string fileName)
+		private void ImportServers(bool useLegacy, string fileName)
 		{
 			try
 	    	{
@@ -397,12 +399,12 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Exécution d'une requête.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
-		void Bgw_executeDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+		private void Bgw_executeDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
 		{
 			QueryAndResultSet qrs = (QueryAndResultSet)e.Argument;
 			
@@ -421,12 +423,12 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// 
+		/// Affichage des résultats d'exécution.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
 		
-		void Bgw_executeRunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+		private void Bgw_executeRunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
 		{
 			QueryAndResultSet qrs = (QueryAndResultSet)e.Result;
 			
@@ -467,6 +469,23 @@ namespace MultiQuery
 			}
 			
 			lock(this) { SaveServerList(); }
+		}
+		
+		/// <summary>
+		/// Rendu des tabs avec couleur du sereur.
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		private void Tbc_resultDrawItem(object sender, DrawItemEventArgs e)
+		{
+		    TabPage page = tbc_result.TabPages[e.Index];
+		    e.Graphics.FillRectangle(new SolidBrush(page.BackColor), e.Bounds);
+		
+		    Rectangle paddedBounds = e.Bounds;
+		    int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+		    paddedBounds.Offset(1, yOffset);
+		    TextRenderer.DrawText(e.Graphics, page.Text, Font, paddedBounds, page.ForeColor);
 		}
 	}
 }

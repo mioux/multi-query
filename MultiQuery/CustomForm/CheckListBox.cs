@@ -99,7 +99,7 @@ namespace MultiQuery.CustomForm
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void lbx_main_DrawItem(object sender, DrawItemEventArgs e)
+		private void lbx_main_DrawItem(object sender, DrawItemEventArgs e)
         {
 			if (e.Index > lbx_main.Items.Count || e.Index < 0)
 				return;
@@ -120,7 +120,7 @@ namespace MultiQuery.CustomForm
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void ListBoxUpdate_CheckedChanged(object sender, EventArgs e)
+		private void ListBoxUpdate_CheckedChanged(object sender, EventArgs e)
 		{
 			CheckBox chx = (CheckBox)sender;
 			
@@ -222,7 +222,7 @@ namespace MultiQuery.CustomForm
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void EditerToolStripMenuItemClick(object sender, EventArgs e)
+		private void EditerToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			Server.Server server = (Server.Server)SourceTable.Rows[ClickedServer]["Server"];
 			
@@ -240,7 +240,7 @@ namespace MultiQuery.CustomForm
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
+		private void SupprimerToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			DeleteServer(ClickedServer);
 			((frm_main)ParentForm).SaveServerList();
@@ -252,7 +252,7 @@ namespace MultiQuery.CustomForm
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Lbx_mainMouseUp(object sender, MouseEventArgs e)
+		private void Lbx_mainMouseUp(object sender, MouseEventArgs e)
 		{
 			if (e.Button != MouseButtons.Right)
 				return;
@@ -273,7 +273,7 @@ namespace MultiQuery.CustomForm
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void ExecuterSurCeServeurToolStripMenuItemClick(object sender, EventArgs e)
+		private void ExecuterSurCeServeurToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			Server.Server server = (Server.Server)SourceTable.Rows[ClickedServer]["Server"];
 			frm_main parent = (frm_main)this.ParentForm;

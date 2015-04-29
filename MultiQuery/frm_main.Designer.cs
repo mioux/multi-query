@@ -176,8 +176,10 @@ namespace MultiQuery
 			// 
 			this.tbc_result.Controls.Add(this.tbp_request);
 			resources.ApplyResources(this.tbc_result, "tbc_result");
+			this.tbc_result.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
 			this.tbc_result.Name = "tbc_result";
 			this.tbc_result.SelectedIndex = 0;
+			this.tbc_result.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Tbc_resultDrawItem);
 			// 
 			// tbp_request
 			// 
