@@ -36,6 +36,7 @@ namespace MultiQuery.Config
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.txt_server = new System.Windows.Forms.TextBox();
 			this.lbl_title = new System.Windows.Forms.Label();
 			this.cbx_type = new System.Windows.Forms.ComboBox();
@@ -44,6 +45,7 @@ namespace MultiQuery.Config
 			this.txt_pw = new System.Windows.Forms.TextBox();
 			this.chx_rememberMe = new System.Windows.Forms.CheckBox();
 			this.grp_login = new System.Windows.Forms.GroupBox();
+			this.btn_browse = new System.Windows.Forms.Button();
 			this.lbl_defaultDb = new System.Windows.Forms.Label();
 			this.txt_defaultDatabase = new System.Windows.Forms.TextBox();
 			this.lbl_pw = new System.Windows.Forms.Label();
@@ -60,6 +62,9 @@ namespace MultiQuery.Config
 			this.btn_annuler = new System.Windows.Forms.Button();
 			this.btn_test = new System.Windows.Forms.Button();
 			this.cld = new System.Windows.Forms.ColorDialog();
+			this.mnu_MsSqlServers = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.bgw_populateMsSqlServerMenu = new System.ComponentModel.BackgroundWorker();
+			this.ofd_sqlite = new System.Windows.Forms.OpenFileDialog();
 			this.grp_login.SuspendLayout();
 			this.grp_register.SuspendLayout();
 			this.SuspendLayout();
@@ -68,7 +73,7 @@ namespace MultiQuery.Config
 			// 
 			this.txt_server.Location = new System.Drawing.Point(125, 46);
 			this.txt_server.Name = "txt_server";
-			this.txt_server.Size = new System.Drawing.Size(222, 20);
+			this.txt_server.Size = new System.Drawing.Size(184, 20);
 			this.txt_server.TabIndex = 2;
 			this.txt_server.Leave += new System.EventHandler(this.Txt_serverLeave);
 			// 
@@ -136,6 +141,7 @@ namespace MultiQuery.Config
 			// 
 			// grp_login
 			// 
+			this.grp_login.Controls.Add(this.btn_browse);
 			this.grp_login.Controls.Add(this.lbl_defaultDb);
 			this.grp_login.Controls.Add(this.txt_defaultDatabase);
 			this.grp_login.Controls.Add(this.lbl_pw);
@@ -155,6 +161,16 @@ namespace MultiQuery.Config
 			this.grp_login.TabIndex = 8;
 			this.grp_login.TabStop = false;
 			this.grp_login.Text = "Login";
+			// 
+			// btn_browse
+			// 
+			this.btn_browse.Location = new System.Drawing.Point(315, 46);
+			this.btn_browse.Name = "btn_browse";
+			this.btn_browse.Size = new System.Drawing.Size(32, 20);
+			this.btn_browse.TabIndex = 14;
+			this.btn_browse.Text = "...";
+			this.btn_browse.UseVisualStyleBackColor = true;
+			this.btn_browse.Click += new System.EventHandler(this.Btn_browseClick);
 			// 
 			// lbl_defaultDb
 			// 
@@ -288,6 +304,23 @@ namespace MultiQuery.Config
 			this.btn_test.UseVisualStyleBackColor = true;
 			this.btn_test.Click += new System.EventHandler(this.Btn_testClick);
 			// 
+			// mnu_MsSqlServers
+			// 
+			this.mnu_MsSqlServers.Name = "mnu_servers";
+			this.mnu_MsSqlServers.ShowImageMargin = false;
+			this.mnu_MsSqlServers.Size = new System.Drawing.Size(36, 4);
+			// 
+			// bgw_populateMsSqlServerMenu
+			// 
+			this.bgw_populateMsSqlServerMenu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Bgw_populateMsSqlServerMenuDoWork);
+			this.bgw_populateMsSqlServerMenu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Bgw_populateMsSqlServerMenuRunWorkerCompleted);
+			// 
+			// ofd_sqlite
+			// 
+			this.ofd_sqlite.DefaultExt = "sqlite";
+			this.ofd_sqlite.Filter = "Fichiers SQLite|*.sqlite|Tous les fichiers|*.*";
+			this.ofd_sqlite.RestoreDirectory = true;
+			// 
 			// frm_newServer
 			// 
 			this.AcceptButton = this.btn_ok;
@@ -311,6 +344,10 @@ namespace MultiQuery.Config
 			this.grp_register.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.OpenFileDialog ofd_sqlite;
+		private System.ComponentModel.BackgroundWorker bgw_populateMsSqlServerMenu;
+		private System.Windows.Forms.ContextMenuStrip mnu_MsSqlServers;
+		private System.Windows.Forms.Button btn_browse;
 		private System.Windows.Forms.Label lbl_defaultDb;
 		private System.Windows.Forms.Label lbl_title;
 		private System.Windows.Forms.TextBox txt_defaultDatabase;

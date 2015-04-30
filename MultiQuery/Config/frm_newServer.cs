@@ -5,8 +5,11 @@
  * Heure: 13:52
  */
 using System;
+using System.Data;
+using System.Data.Sql;
 using System.Drawing;
 using System.Windows.Forms;
+
 using MultiQuery.Server;
 
 namespace MultiQuery.Config
@@ -35,6 +38,8 @@ namespace MultiQuery.Config
 			
 			cbx_type.SelectedIndex = 0;
 			cbx_authent.SelectedIndex = 0;
+			
+			bgw_populateMsSqlServerMenu.RunWorkerAsync();
 		}
 		
 		/// <summary>
@@ -50,6 +55,8 @@ namespace MultiQuery.Config
 			
 			txt_serverName.Text = srv.ServerName;
 			pan_color.BackColor = srv.ServerColor;
+			
+			bgw_populateMsSqlServerMenu.RunWorkerAsync();
 			
 			if (srv is Server.MsSqlServer)
 			{
@@ -259,10 +266,12 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		void Cbx_typeSelectedIndexChanged(object sender, EventArgs e)
+		private void Cbx_typeSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (cbx_type.SelectedIndex == 1)
 			{
+				txt_serverName.Text = string.Empty;
+				
 				cbx_authent.Enabled = false;
 				cbx_authent.SelectedIndex = 1;
 				
@@ -272,14 +281,88 @@ namespace MultiQuery.Config
 				txt_defaultDatabase.Enabled = false;
 				txt_defaultDatabase.Text = string.Empty;
 			}
-			else
+			else if (cbx_type.SelectedIndex == 0)
 			{
+				txt_serverName.Text = string.Empty;
+				
 				cbx_authent.Enabled = true;
 				
 				txt_username.Enabled = true;
 				
 				txt_defaultDatabase.Enabled = true;
 			}
+		}
+		
+		/// <summary>
+		/// Crétion du menu.
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		private void Btn_browseClick(object sender, EventArgs e)
+		{
+			if (cbx_type.SelectedIndex == 0)
+			{
+				mnu_MsSqlServers.Show(MousePosition);
+			}
+			else if (cbx_type.SelectedIndex == 1)
+			{
+				if (ofd_sqlite.ShowDialog() == DialogResult.OK)
+				{
+					txt_server.Text = ofd_sqlite.FileName;
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Chargement des instances SQL Server (chargement).
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		private void Bgw_populateMsSqlServerMenuDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+		{				
+			e.Result = SqlDataSourceEnumerator.Instance.GetDataSources();
+		}
+		
+		/// <summary>
+		/// Chargement des instances SQL Server (population du menu).
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		private void Bgw_populateMsSqlServerMenuRunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+		{
+			DataTable servers = (DataTable)e.Result;
+			
+			foreach (DataRow data in servers.Rows)
+			{
+				ToolStripItem newMenu;
+				
+				if ((data["InstanceName"] as string) != null)
+				{
+		            newMenu = mnu_MsSqlServers.Items.Add(data["ServerName"].ToString() + "\\" + data["InstanceName"].ToString());
+				}
+		        else
+		        {
+		        	newMenu = mnu_MsSqlServers.Items.Add(data["ServerName"].ToString());
+		        }
+		        
+		        newMenu.Click += new EventHandler(SelectMenu_Click);
+			}
+		}
+		
+		/// <summary>
+		/// Click sur un élément du menu.
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		private void SelectMenu_Click(object sender, EventArgs e)
+		{
+			ToolStripItem menuItem = (ToolStripItem)sender;
+			
+			txt_server.Text = menuItem.Text;
 		}
 	}
 }
