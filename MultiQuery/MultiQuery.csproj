@@ -36,6 +36,9 @@
     <Reference Include="ICSharpCode.TextEditor">
       <HintPath>ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Mysql.Data">
+      <HintPath>Mysql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -77,10 +80,13 @@
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuPopulationType.cs" />
+    <Compile Include="MySqlDataSourceEnumerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryAndResultSet.cs" />
     <Compile Include="Server\MsSqlServer.cs" />
+    <Compile Include="Server\MySqlServer.cs" />
     <Compile Include="Server\Server.cs" />
     <Compile Include="Server\SqLiteFile.cs" />
     <EmbeddedResource Include="Config\frm_MsSqlServer_ConnectionDialog.resx">
