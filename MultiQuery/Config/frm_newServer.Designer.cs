@@ -84,14 +84,15 @@ namespace MultiQuery.Config
 			// cbx_type
 			// 
 			this.cbx_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_type.Enabled = false;
 			this.cbx_type.FormattingEnabled = true;
 			this.cbx_type.Items.AddRange(new object[] {
-									"MsSqlServer"});
+									"Microsoft Sql Server",
+									"SqLite"});
 			this.cbx_type.Location = new System.Drawing.Point(125, 19);
 			this.cbx_type.Name = "cbx_type";
 			this.cbx_type.Size = new System.Drawing.Size(222, 21);
 			this.cbx_type.TabIndex = 1;
+			this.cbx_type.SelectedIndexChanged += new System.EventHandler(this.Cbx_typeSelectedIndexChanged);
 			// 
 			// cbx_authent
 			// 

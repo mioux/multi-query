@@ -23,7 +23,7 @@ namespace MultiQuery.Server
 	public class MsSqlServer : Server
 	{
 		/// <summary>
-		/// Host ou IP de connexion (valeu).
+		/// Host ou IP de connexion (valeur).
 		/// </summary>
 		private string _dns = string.Empty;
 		

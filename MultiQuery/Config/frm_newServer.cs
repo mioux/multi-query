@@ -32,6 +32,9 @@ namespace MultiQuery.Config
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+			
+			cbx_type.SelectedIndex = 0;
+			cbx_authent.SelectedIndex = 0;
 		}
 		
 		/// <summary>
@@ -66,6 +69,16 @@ namespace MultiQuery.Config
 				txt_pw.Text = server.Password;
 				txt_defaultDatabase.Text = server.DefaultDatabase;
 				txt_server.Text = server.Dns;
+				chx_rememberMe.Checked = server.RememberMe;
+			}
+			else if (srv is SqLiteFile)
+			{
+				Server.SqLiteFile server = (Server.SqLiteFile)srv;
+				
+				cbx_type.SelectedIndex = 1;
+				
+				txt_pw.Text = server.Password;
+				txt_server.Text = server.FileName;
 				chx_rememberMe.Checked = server.RememberMe;
 			}
 		}
@@ -105,27 +118,50 @@ namespace MultiQuery.Config
 			
 			if (NewServer == null)
 			{
-				NewServer = MsSqlServer.New(
-					txt_server.Text,
-					txt_username.Text,
-					chx_rememberMe.Checked,
-					txt_pw.Text,
-					cbx_authent.SelectedIndex == 0,
-					txt_serverName.Text,
-					pan_color.BackColor,
-					txt_defaultDatabase.Text);
+				if (cbx_type.SelectedIndex == 0)
+				{
+					NewServer = MsSqlServer.New(
+								txt_server.Text,
+								txt_username.Text,
+								chx_rememberMe.Checked,
+								txt_pw.Text,
+								cbx_authent.SelectedIndex == 0,
+								txt_serverName.Text,
+								pan_color.BackColor,
+								txt_defaultDatabase.Text);
+				}
+				else if (cbx_type.SelectedIndex == 1)
+				{
+					NewServer = SqLiteFile.New(txt_server.Text,
+					                           chx_rememberMe.Checked,
+					                           txt_pw.Text,
+					                           txt_serverName.Text,
+					                           pan_color.BackColor);
+				}
 			}
 			else
 			{
-				((Server.MsSqlServer)NewServer).SetNewValues(
-					txt_server.Text,
-					txt_username.Text,
-					chx_rememberMe.Checked,
-					txt_pw.Text,
-					cbx_authent.SelectedIndex == 0,
-					txt_serverName.Text,
-					pan_color.BackColor,
-					txt_defaultDatabase.Text);
+				if (cbx_type.SelectedIndex == 0)
+				{
+					((Server.MsSqlServer)NewServer).SetNewValues(
+						txt_server.Text,
+						txt_username.Text,
+						chx_rememberMe.Checked,
+						txt_pw.Text,
+						cbx_authent.SelectedIndex == 0,
+						txt_serverName.Text,
+						pan_color.BackColor,
+						txt_defaultDatabase.Text);
+				}
+				else if (cbx_type.SelectedIndex == 1)
+				{
+					((Server.SqLiteFile)NewServer).SetNewValues(
+						txt_server.Text,
+						chx_rememberMe.Checked,
+						txt_pw.Text,
+						txt_serverName.Text,
+						pan_color.BackColor);
+				}
 			}
 			this.DialogResult = DialogResult.OK;
 			
@@ -152,14 +188,29 @@ namespace MultiQuery.Config
 		
 		private void Btn_testClick(object sender, EventArgs e)
 		{
-			try
+			if (cbx_type.SelectedIndex == 0)
 			{
-				MsSqlServer.TestConnection(txt_server.Text, txt_username.Text, txt_pw.Text, cbx_authent.SelectedIndex == 0, txt_defaultDatabase.Text);
-				MessageBox.Show("Connexion réussie", "Connexion réussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				try 
+				{
+					MsSqlServer.TestConnection(txt_server.Text, txt_username.Text, txt_pw.Text, cbx_authent.SelectedIndex == 0, txt_defaultDatabase.Text);
+					MessageBox.Show("Connexion réussie", "Connexion réussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch (Exception exp)
+				{
+					MessageBox.Show("Connexion échouée\n" + exp.Message, "Connexion échouée", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
-			catch (Exception exp)
+			else if (cbx_type.SelectedIndex == 1)
 			{
-				MessageBox.Show("Connexion échouée\n" + exp.Message, "Connexion échouée", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SqLiteFile.TestConnection(txt_server.Text, txt_pw.Text);
+					MessageBox.Show("Connexion réussie", "Connexion réussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch (Exception exp)
+				{
+					MessageBox.Show("Connexion échouée\n" + exp.Message, "Connexion échouée", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 		}
 		
@@ -200,6 +251,35 @@ namespace MultiQuery.Config
 		{
 			if (txt_serverName.Text == string.Empty)
 				txt_serverName.Text = txt_server.Text;
+		}
+		
+		/// <summary>
+		/// Choix du type de serveur.
+		/// </summary>
+		/// <param name="sender">Objet appelant.</param>
+		/// <param name="e">Arguments d'appel.</param>
+		
+		void Cbx_typeSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (cbx_type.SelectedIndex == 1)
+			{
+				cbx_authent.Enabled = false;
+				cbx_authent.SelectedIndex = 1;
+				
+				txt_username.Enabled = false;
+				txt_username.Text = string.Empty;
+				
+				txt_defaultDatabase.Enabled = false;
+				txt_defaultDatabase.Text = string.Empty;
+			}
+			else
+			{
+				cbx_authent.Enabled = true;
+				
+				txt_username.Enabled = true;
+				
+				txt_defaultDatabase.Enabled = true;
+			}
 		}
 	}
 }

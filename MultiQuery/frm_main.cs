@@ -268,6 +268,10 @@ namespace MultiQuery
 
 					bformatter.Serialize(ms, srv);
 					XmlNode newServer = serverList.CreateNode(XmlNodeType.Element, "", "server", "");
+					XmlAttribute serverType = serverList.CreateAttribute("type");
+					serverType.Value = srv.GetType().ToString();
+					newServer.Attributes.Append(serverType);
+					
 					if (useLegacy == true)
 					{
 						newServer.InnerText = Cypher.ChiffreLegacy(ms.ToArray());
