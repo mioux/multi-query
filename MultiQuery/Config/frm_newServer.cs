@@ -405,16 +405,13 @@ namespace MultiQuery.Config
 			{
 				ToolStripItem newMenu;
 				
-				if ((data["InstanceName"] as string) != null)
-				{
-		            newMenu = cms.Items.Add(data["ServerName"].ToString() + "\\" + data["InstanceName"].ToString());
-				}
-		        else
-		        {
-		        	newMenu = cms.Items.Add(data["ServerName"].ToString());
-		        }
-		        
-		        newMenu.Click += new EventHandler(SelectMenu_Click);
+				string name = "";
+                if (data["ServerName"] != null && data["ServerName"] != DBNull.Value)
+                    name = data["ServerName"].ToString();
+                if (data["InstanceName"] != null && data["InstanceName"] != DBNull.Value && data["InstanceName"].ToString() != string.Empty)
+                    name += "\\" + data["InstanceName"].ToString();
+				
+	            newMenu = cms.Items.Add(name, null, SelectMenu_Click);
 			}
 		}
 		
