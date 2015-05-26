@@ -54,9 +54,6 @@ namespace MultiQuery.Config
 			
 			NewServer = srv;
 			
-			txt_serverName.Text = srv.ServerName;
-			pan_color.BackColor = srv.ServerColor;
-			
 			bgw_populateMsSqlServerMenu.RunWorkerAsync();
 			
 			if (srv is Server.MsSqlServer)
@@ -102,6 +99,9 @@ namespace MultiQuery.Config
 				txt_server.Text = server.Dns;
 				chx_rememberMe.Checked = server.RememberMe;
 			}
+			
+			txt_serverName.Text = srv.ServerName;
+			pan_color.BackColor = srv.ServerColor;
 		}
 		
 		/// <summary>
