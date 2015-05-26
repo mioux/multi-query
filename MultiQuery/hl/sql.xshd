@@ -15,7 +15,10 @@
                 <Begin>/*</Begin>
                 <End>*/</End>
             </Span>
-        	
+        	<Span name = "LineComment" rule = "CommentMarkerSet" bold = "false" italic = "false" color = "Green" stopateol = "true">
+                <Begin>--</Begin>
+            </Span>
+       	
         	<Span name = "Character" bold = "false" italic = "false" color = "Red" stopateol = "true">
 				<Begin>&apos;</Begin>
 				<End>&apos;</End>
