@@ -13,6 +13,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
+//using System.Runtime.InteropServices;
 
 using ICSharpCode.TextEditor.Document;
 using MultiQuery.Config;
@@ -490,6 +491,19 @@ namespace MultiQuery
 		    int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
 		    paddedBounds.Offset(1, yOffset);
 		    TextRenderer.DrawText(e.Graphics, page.Text, Font, paddedBounds, page.ForeColor);
+		}
+		
+		/// <summary>
+		/// Changement de l'état toujours au dessus.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void ToujoursAuDessusToolStripMenuItemClick(object sender, EventArgs e)
+		{			
+			TopMost = TopMost == false;
+			
+			toujoursAuDessusToolStripMenuItem.Text = (TopMost == true ? "☑" : "☐") + " Toujours au dessus";
 		}
 	}
 }

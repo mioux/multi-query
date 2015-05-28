@@ -50,6 +50,7 @@ namespace MultiQuery
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exécuterSurTousLesServeursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toujoursAuDessusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.spc_main = new System.Windows.Forms.SplitContainer();
 			this.clb_serverList = new MultiQuery.CustomForm.CheckListBox();
 			this.tbc_result = new System.Windows.Forms.TabControl();
@@ -70,7 +71,8 @@ namespace MultiQuery
 			// 
 			this.mnu_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.fichierToolStripMenuItem,
-									this.serveurToolStripMenuItem});
+									this.serveurToolStripMenuItem,
+									this.toujoursAuDessusToolStripMenuItem});
 			resources.ApplyResources(this.mnu_main, "mnu_main");
 			this.mnu_main.Name = "mnu_main";
 			// 
@@ -154,6 +156,12 @@ namespace MultiQuery
 			this.exécuterSurTousLesServeursToolStripMenuItem.Name = "exécuterSurTousLesServeursToolStripMenuItem";
 			this.exécuterSurTousLesServeursToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurTousLesServeursToolStripMenuItemClick);
 			// 
+			// toujoursAuDessusToolStripMenuItem
+			// 
+			this.toujoursAuDessusToolStripMenuItem.Name = "toujoursAuDessusToolStripMenuItem";
+			resources.ApplyResources(this.toujoursAuDessusToolStripMenuItem, "toujoursAuDessusToolStripMenuItem");
+			this.toujoursAuDessusToolStripMenuItem.Click += new System.EventHandler(this.ToujoursAuDessusToolStripMenuItemClick);
+			// 
 			// spc_main
 			// 
 			resources.ApplyResources(this.spc_main, "spc_main");
@@ -212,6 +220,7 @@ namespace MultiQuery
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem toujoursAuDessusToolStripMenuItem;
 		public ICSharpCode.TextEditor.TextEditorControl tec_request;
 		private System.Windows.Forms.TabPage tbp_request;
 		private System.Windows.Forms.OpenFileDialog ofd_import;

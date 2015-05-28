@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="mnu_main.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>13, 18</value>
+    <value>0, 0</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="exporterServerListxmlToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -2113,6 +2113,12 @@
   <data name="serveurToolStripMenuItem.Text" xml:space="preserve">
     <value>Serveur</value>
   </data>
+  <data name="toujoursAuDessusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 20</value>
+  </data>
+  <data name="toujoursAuDessusToolStripMenuItem.Text" xml:space="preserve">
+    <value>☐ Toujours au dessus</value>
+  </data>
   <data name="mnu_main.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -2161,7 +2167,7 @@
     <value>clb_serverList</value>
   </data>
   <data name="&gt;&gt;clb_serverList.Type" xml:space="preserve">
-    <value>MultiQuery.CustomForm.CheckListBox, MultiQuery, Version=0.4.5597.27547, Culture=neutral, PublicKeyToken=null</value>
+    <value>MultiQuery.CustomForm.CheckListBox, MultiQuery, Version=0.5.5626.28009, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;clb_serverList.Parent" xml:space="preserve">
     <value>spc_main.Panel1</value>
@@ -4302,6 +4308,12 @@
     <value>exécuterSurTousLesServeursToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;exécuterSurTousLesServeursToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toujoursAuDessusToolStripMenuItem.Name" xml:space="preserve">
+    <value>toujoursAuDessusToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;toujoursAuDessusToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;bgw_executeQuery.Name" xml:space="preserve">
