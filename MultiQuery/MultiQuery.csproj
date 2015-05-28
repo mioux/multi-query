@@ -104,6 +104,7 @@
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Class1.vb" />
     <None Include="hl\sql.xshd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
