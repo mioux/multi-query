@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{DEE10324-FF72-42D5-B84F-35D45DCDBD98}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,11 +7,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MultiQuery</RootNamespace>
     <AssemblyName>MultiQuery</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SourceAnalysisOverrideSettingsFile>D:\Users\srumeu\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <StartupObject>MultiQuery.Program</StartupObject>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -31,10 +33,15 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' " />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Reference Include="ICSharpCode.TextEditor">
       <HintPath>ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Mysql.Data">
+      <HintPath>Mysql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -47,6 +54,7 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -77,10 +85,13 @@
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuPopulationType.cs" />
+    <Compile Include="MySqlDataSourceEnumerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryAndResultSet.cs" />
     <Compile Include="Server\MsSqlServer.cs" />
+    <Compile Include="Server\MySqlServer.cs" />
     <Compile Include="Server\Server.cs" />
     <Compile Include="Server\SqLiteFile.cs" />
     <EmbeddedResource Include="Config\frm_MsSqlServer_ConnectionDialog.resx">

@@ -65,8 +65,12 @@ namespace MultiQuery.Config
 			this.mnu_MsSqlServers = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.bgw_populateMsSqlServerMenu = new System.ComponentModel.BackgroundWorker();
 			this.ofd_sqlite = new System.Windows.Forms.OpenFileDialog();
+			this.bgw_populateMySqlServerMenu = new System.ComponentModel.BackgroundWorker();
+			this.mnu_MySqlServers = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.notYetImplementedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.grp_login.SuspendLayout();
 			this.grp_register.SuspendLayout();
+			this.mnu_MySqlServers.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// txt_server
@@ -92,7 +96,8 @@ namespace MultiQuery.Config
 			this.cbx_type.FormattingEnabled = true;
 			this.cbx_type.Items.AddRange(new object[] {
 									"Microsoft Sql Server",
-									"SqLite"});
+									"SqLite",
+									"MySql"});
 			this.cbx_type.Location = new System.Drawing.Point(125, 19);
 			this.cbx_type.Name = "cbx_type";
 			this.cbx_type.Size = new System.Drawing.Size(222, 21);
@@ -313,13 +318,32 @@ namespace MultiQuery.Config
 			// bgw_populateMsSqlServerMenu
 			// 
 			this.bgw_populateMsSqlServerMenu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Bgw_populateMsSqlServerMenuDoWork);
-			this.bgw_populateMsSqlServerMenu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Bgw_populateMsSqlServerMenuRunWorkerCompleted);
+			this.bgw_populateMsSqlServerMenu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Bgw_populateMenuRunWorkerCompleted);
 			// 
 			// ofd_sqlite
 			// 
 			this.ofd_sqlite.DefaultExt = "sqlite";
 			this.ofd_sqlite.Filter = "Fichiers SQLite|*.sqlite|Tous les fichiers|*.*";
 			this.ofd_sqlite.RestoreDirectory = true;
+			// 
+			// bgw_populateMySqlServerMenu
+			// 
+			this.bgw_populateMySqlServerMenu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Bgw_populateMySqlServerMenuDoWork);
+			// 
+			// mnu_MySqlServers
+			// 
+			this.mnu_MySqlServers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.notYetImplementedToolStripMenuItem});
+			this.mnu_MySqlServers.Name = "contextMenuStrip1";
+			this.mnu_MySqlServers.ShowImageMargin = false;
+			this.mnu_MySqlServers.Size = new System.Drawing.Size(163, 48);
+			// 
+			// notYetImplementedToolStripMenuItem
+			// 
+			this.notYetImplementedToolStripMenuItem.Enabled = false;
+			this.notYetImplementedToolStripMenuItem.Name = "notYetImplementedToolStripMenuItem";
+			this.notYetImplementedToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+			this.notYetImplementedToolStripMenuItem.Text = "Not yet implemented";
 			// 
 			// frm_newServer
 			// 
@@ -342,8 +366,12 @@ namespace MultiQuery.Config
 			this.grp_login.PerformLayout();
 			this.grp_register.ResumeLayout(false);
 			this.grp_register.PerformLayout();
+			this.mnu_MySqlServers.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.ToolStripMenuItem notYetImplementedToolStripMenuItem;
+		private System.Windows.Forms.ContextMenuStrip mnu_MySqlServers;
+		private System.ComponentModel.BackgroundWorker bgw_populateMySqlServerMenu;
 		private System.Windows.Forms.OpenFileDialog ofd_sqlite;
 		private System.ComponentModel.BackgroundWorker bgw_populateMsSqlServerMenu;
 		private System.Windows.Forms.ContextMenuStrip mnu_MsSqlServers;

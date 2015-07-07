@@ -40,6 +40,7 @@ namespace MultiQuery.Config
 			cbx_authent.SelectedIndex = 0;
 			
 			bgw_populateMsSqlServerMenu.RunWorkerAsync();
+			bgw_populateMySqlServerMenu.RunWorkerAsync();
 		}
 		
 		/// <summary>
@@ -83,6 +84,19 @@ namespace MultiQuery.Config
 				
 				txt_pw.Text = server.Password;
 				txt_server.Text = server.FileName;
+				chx_rememberMe.Checked = server.RememberMe;
+				txt_serverName.Text = server.ServerName;
+			}
+			else if (srv is MySqlServer)
+			{
+				Server.MySqlServer server = (Server.MySqlServer)srv;
+				
+				cbx_type.SelectedIndex = 2;
+				cbx_authent.SelectedIndex = 1;
+				txt_username.Text = server.UserName;
+				txt_pw.Text = server.Password;
+				txt_defaultDatabase.Text = server.DefaultDatabase;
+				txt_server.Text = server.Dns;
 				chx_rememberMe.Checked = server.RememberMe;
 			}
 			
@@ -145,6 +159,17 @@ namespace MultiQuery.Config
 					                           txt_serverName.Text,
 					                           pan_color.BackColor);
 				}
+				else if (cbx_type.SelectedIndex == 2)
+				{
+					NewServer = MySqlServer.New(
+								txt_server.Text,
+								txt_username.Text,
+								chx_rememberMe.Checked,
+								txt_pw.Text,
+								txt_serverName.Text,
+								pan_color.BackColor,
+								txt_defaultDatabase.Text);
+				}
 			}
 			else
 			{
@@ -168,6 +193,17 @@ namespace MultiQuery.Config
 						txt_pw.Text,
 						txt_serverName.Text,
 						pan_color.BackColor);
+				}
+				else if (cbx_type.SelectedIndex == 2)
+				{
+					((Server.MySqlServer)NewServer).SetNewValues(
+						txt_server.Text,
+						txt_username.Text,
+						chx_rememberMe.Checked,
+						txt_pw.Text,
+						txt_serverName.Text,
+						pan_color.BackColor,
+						txt_defaultDatabase.Text);
 				}
 			}
 			this.DialogResult = DialogResult.OK;
@@ -291,6 +327,17 @@ namespace MultiQuery.Config
 				
 				txt_defaultDatabase.Enabled = true;
 			}
+			else if (cbx_type.SelectedIndex == 2)
+			{
+				txt_serverName.Text = string.Empty;
+				
+				cbx_authent.Enabled = false;
+				cbx_authent.SelectedIndex = 1;
+				
+				txt_username.Enabled = true;
+				
+				txt_defaultDatabase.Enabled = true;
+			}
 		}
 		
 		/// <summary>
@@ -312,6 +359,10 @@ namespace MultiQuery.Config
 					txt_server.Text = ofd_sqlite.FileName;
 				}
 			}
+			else if (cbx_type.SelectedIndex == 2)
+			{
+				mnu_MySqlServers.Show(MousePosition);
+			}
 		}
 		
 		/// <summary>
@@ -322,7 +373,7 @@ namespace MultiQuery.Config
 		
 		private void Bgw_populateMsSqlServerMenuDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
 		{				
-			e.Result = SqlDataSourceEnumerator.Instance.GetDataSources();
+			e.Result = new MenuPopulationType(SqlDataSourceEnumerator.Instance.GetDataSources(), typeof(MsSqlServer));
 		}
 		
 		/// <summary>
@@ -331,24 +382,36 @@ namespace MultiQuery.Config
 		/// <param name="sender">Objet appelant.</param>
 		/// <param name="e">Arguments d'appel.</param>
 		
-		private void Bgw_populateMsSqlServerMenuRunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+		private void Bgw_populateMenuRunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
 		{
-			DataTable servers = (DataTable)e.Result;
+			MenuPopulationType mpt = (MenuPopulationType)e.Result;
+			
+			DataTable servers = mpt.ItemList;
+			
+			ContextMenuStrip cms;
+			
+			if (typeof(MsSqlServer) == mpt.ItemType)
+			{
+				cms = mnu_MsSqlServers;
+			}
+			else
+			{
+				cms = mnu_MySqlServers;
+				// Non implémenté pour l'instant, inutile de populiser le menu.
+				return;
+			}
 			
 			foreach (DataRow data in servers.Rows)
 			{
 				ToolStripItem newMenu;
 				
-				if ((data["InstanceName"] as string) != null)
-				{
-		            newMenu = mnu_MsSqlServers.Items.Add(data["ServerName"].ToString() + "\\" + data["InstanceName"].ToString());
-				}
-		        else
-		        {
-		        	newMenu = mnu_MsSqlServers.Items.Add(data["ServerName"].ToString());
-		        }
-		        
-		        newMenu.Click += new EventHandler(SelectMenu_Click);
+				string name = "";
+                if (data["ServerName"] != null && data["ServerName"] != DBNull.Value)
+                    name = data["ServerName"].ToString();
+                if (data["InstanceName"] != null && data["InstanceName"] != DBNull.Value && data["InstanceName"].ToString() != string.Empty)
+                    name += "\\" + data["InstanceName"].ToString();
+				
+	            newMenu = cms.Items.Add(name, null, SelectMenu_Click);
 			}
 		}
 		
@@ -363,6 +426,17 @@ namespace MultiQuery.Config
 			ToolStripItem menuItem = (ToolStripItem)sender;
 			
 			txt_server.Text = menuItem.Text;
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void Bgw_populateMySqlServerMenuDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+		{
+			e.Result = new MenuPopulationType(MySqlDataSourceEnumerator.Instance.GetDataSources(), typeof(MySqlServer));
 		}
 	}
 }
