@@ -59,6 +59,7 @@ namespace MultiQuery
 			this.sfd_export = new System.Windows.Forms.SaveFileDialog();
 			this.ofd_import = new System.Windows.Forms.OpenFileDialog();
 			this.mnu_main.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.spc_main)).BeginInit();
 			this.spc_main.Panel1.SuspendLayout();
 			this.spc_main.Panel2.SuspendLayout();
 			this.spc_main.SuspendLayout();
@@ -206,6 +207,7 @@ namespace MultiQuery
 			this.mnu_main.PerformLayout();
 			this.spc_main.Panel1.ResumeLayout(false);
 			this.spc_main.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.spc_main)).EndInit();
 			this.spc_main.ResumeLayout(false);
 			this.tbc_result.ResumeLayout(false);
 			this.tbp_request.ResumeLayout(false);

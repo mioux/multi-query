@@ -8,9 +8,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.DirectoryServices;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using Microsoft.VisualBasic;
 
 namespace MultiQuery.MySqlDataSourceEnumerator
 {
@@ -70,18 +72,18 @@ namespace MultiQuery.MySqlDataSourceEnumerator
 		private static List<string> ListDevices()
 		{
 			List<string> ServerList = new List<string>();
-			DirectoryEntry childEntry = default(DirectoryEntry);
+			// DirectoryEntry childEntry = default(DirectoryEntry);
 			DirectoryEntry ParentEntry = new DirectoryEntry();
 			try {
 				ParentEntry.Path = "WinNT:";
-				foreach (object childEntry in ParentEntry.Children) {
+				foreach (DirectoryEntry childEntry in ParentEntry.Children) {
 					switch (childEntry.SchemaClassName) {
 						case "Domain":
 	
-							DirectoryEntry SubChildEntry = default(DirectoryEntry);
+							//DirectoryEntry SubChildEntry = default(DirectoryEntry);
 							DirectoryEntry SubParentEntry = new DirectoryEntry();
 							SubParentEntry.Path = "WinNT://" + childEntry.Name;
-							foreach (object SubChildEntry in SubParentEntry.Children) {
+							foreach (DirectoryEntry SubChildEntry in SubParentEntry.Children) {
 								switch (SubChildEntry.SchemaClassName) {
 									case "Computer":
 										ServerList.Add(SubChildEntry.Name);
@@ -96,7 +98,7 @@ namespace MultiQuery.MySqlDataSourceEnumerator
 				return ServerList;
 			//Console.WriteLine(ServerList(1))
 			} catch (Exception Excep) {
-				Interaction.MsgBox("Error While Reading Directories : " + Excep.Message.ToString);
+				Interaction.MsgBox("Error While Reading Directories : " + Excep.Message.ToString());
 				return null;
 			} finally {
 				ParentEntry = null;
