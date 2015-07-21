@@ -494,16 +494,25 @@ namespace MultiQuery
 		}
 		
 		/// <summary>
-		/// Changement de l'état toujours au dessus.
+		/// Passe la fenêtre au dessus.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		
-		void ToujoursAuDessusToolStripMenuItemClick(object sender, EventArgs e)
-		{			
-			TopMost = TopMost == false;
-			
-			toujoursAuDessusToolStripMenuItem.Text = (TopMost == true ? "☑" : "☐") + " Toujours au dessus";
+		void AOTToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			this.TopMost = (this.TopMost == false);
+        	
+        	System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
+        	
+        	if (this.TopMost == true)
+        	{
+        		aOTToolStripMenuItem.Image = (System.Drawing.Image)(resources.GetObject("pined"));
+        	}
+        	else
+        	{
+        		aOTToolStripMenuItem.Image = (System.Drawing.Image)(resources.GetObject("unpined"));
+        	}
 		}
 	}
 }
