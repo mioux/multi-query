@@ -491,5 +491,27 @@ namespace MultiQuery
 		    paddedBounds.Offset(1, yOffset);
 		    TextRenderer.DrawText(e.Graphics, page.Text, Font, paddedBounds, page.ForeColor);
 		}
+		
+		/// <summary>
+		/// Passe la fenêtre au dessus.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		void AOTToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			this.TopMost = (this.TopMost == false);
+        	
+        	System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
+        	
+        	if (this.TopMost == true)
+        	{
+        		aOTToolStripMenuItem.Image = (System.Drawing.Image)(resources.GetObject("pined"));
+        	}
+        	else
+        	{
+        		aOTToolStripMenuItem.Image = (System.Drawing.Image)(resources.GetObject("unpined"));
+        	}
+		}
 	}
 }

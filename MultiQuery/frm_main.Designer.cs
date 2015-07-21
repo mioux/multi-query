@@ -58,6 +58,7 @@ namespace MultiQuery
 			this.bgw_executeQuery = new System.ComponentModel.BackgroundWorker();
 			this.sfd_export = new System.Windows.Forms.SaveFileDialog();
 			this.ofd_import = new System.Windows.Forms.OpenFileDialog();
+			this.aOTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnu_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spc_main)).BeginInit();
 			this.spc_main.Panel1.SuspendLayout();
@@ -71,7 +72,8 @@ namespace MultiQuery
 			// 
 			this.mnu_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.fichierToolStripMenuItem,
-									this.serveurToolStripMenuItem});
+									this.serveurToolStripMenuItem,
+									this.aOTToolStripMenuItem});
 			resources.ApplyResources(this.mnu_main, "mnu_main");
 			this.mnu_main.Name = "mnu_main";
 			// 
@@ -195,6 +197,13 @@ namespace MultiQuery
 			this.tec_request.IsReadOnly = false;
 			this.tec_request.Name = "tec_request";
 			// 
+			// aOTToolStripMenuItem
+			// 
+			resources.ApplyResources(this.aOTToolStripMenuItem, "aOTToolStripMenuItem");
+			this.aOTToolStripMenuItem.Name = "aOTToolStripMenuItem";
+			this.aOTToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("unpined")));
+			this.aOTToolStripMenuItem.Click += new System.EventHandler(this.AOTToolStripMenuItemClick);
+			// 
 			// frm_main
 			// 
 			resources.ApplyResources(this, "$this");
@@ -214,6 +223,7 @@ namespace MultiQuery
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem aOTToolStripMenuItem;
 		public ICSharpCode.TextEditor.TextEditorControl tec_request;
 		private System.Windows.Forms.TabPage tbp_request;
 		private System.Windows.Forms.OpenFileDialog ofd_import;
