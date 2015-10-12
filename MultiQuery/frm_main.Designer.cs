@@ -50,7 +50,6 @@ namespace MultiQuery
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exécuterSurLesServeursSélectionnésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exécuterSurTousLesServeursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toujoursAuDessusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.spc_main = new System.Windows.Forms.SplitContainer();
 			this.clb_serverList = new MultiQuery.CustomForm.CheckListBox();
 			this.tbc_result = new System.Windows.Forms.TabControl();
@@ -157,12 +156,6 @@ namespace MultiQuery
 			resources.ApplyResources(this.exécuterSurTousLesServeursToolStripMenuItem, "exécuterSurTousLesServeursToolStripMenuItem");
 			this.exécuterSurTousLesServeursToolStripMenuItem.Name = "exécuterSurTousLesServeursToolStripMenuItem";
 			this.exécuterSurTousLesServeursToolStripMenuItem.Click += new System.EventHandler(this.ExecuterSurTousLesServeursToolStripMenuItemClick);
-			// 
-			// toujoursAuDessusToolStripMenuItem
-			// 
-			this.toujoursAuDessusToolStripMenuItem.Name = "toujoursAuDessusToolStripMenuItem";
-			resources.ApplyResources(this.toujoursAuDessusToolStripMenuItem, "toujoursAuDessusToolStripMenuItem");
-			this.toujoursAuDessusToolStripMenuItem.Click += new System.EventHandler(this.ToujoursAuDessusToolStripMenuItemClick);
 			// 
 			// spc_main
 			// 
