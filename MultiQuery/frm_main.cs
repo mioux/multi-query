@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Crée par SharpDevelop.
  * Utilisateur: SRUMEU
  * Date: 25/03/2015
@@ -513,6 +513,20 @@ namespace MultiQuery
         	{
         		aOTToolStripMenuItem.Image = (System.Drawing.Image)(resources.GetObject("unpined"));
         	}
+		}
+
+		/// <summary>
+		/// Fermer l'onglet courrant si ce n'est pas l'onglet "Requête"
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+
+		void FermerLongletToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (tbc_result.SelectedIndex != 0)
+			{
+				tbc_result.TabPages.Remove(tbc_result.SelectedTab);
+			}
 		}
 	}
 }
